@@ -5,6 +5,9 @@ def minimum_total(triangle: list[list[int]]) -> int:
 
     :param triangle: List of List of integers
     :return: The minimum path sum from top to bottom of a triangle array
+
+    Time Complexity: o(n^2)
+    Space Complexity: o(1)
     """
     # Loop to start from the bottom of the triangle and moving up
     for row in reversed(range(len(triangle))):
