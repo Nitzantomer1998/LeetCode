@@ -1,0 +1,8 @@
+def fib(n: int) -> int:
+    
+    fibonacci = [0, 1]
+
+    for _ in range(n - 1):
+        fibonacci[0], fibonacci[1] = fibonacci[1], sum(fibonacci)
+
+    return fibonacci[-1] if n > 0 else fibonacci[0]
