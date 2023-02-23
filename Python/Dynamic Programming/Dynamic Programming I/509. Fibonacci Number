@@ -1,8 +1,21 @@
 def fib(n: int) -> int:
-    
+    """
+    Find the value of fibonacci(n), and return it
+    Note: f(0) = 0, f(1) = 1, and the rules are f(n) = f(n - 1) + f(n - 2)
+
+    :param n: Integer representing the index in the fibonacci tree
+    :return: The value of fibonacci(n)
+
+    Time Complexity: o(n)
+    Space Complexity: o(1)
+    """
+    # List storing the previous and current fibonacci values
     fibonacci = [0, 1]
 
+    # Loop to build the fibonacci numbers
     for _ in range(n - 1):
+        # In each iteration calculate the next fibonacci number, and update accordingly
         fibonacci[0], fibonacci[1] = fibonacci[1], sum(fibonacci)
 
+    # Returning the fibonacci solution
     return fibonacci[-1] if n > 0 else fibonacci[0]
