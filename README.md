@@ -8,9 +8,7 @@
 </p>
 
 <h2>Getting Started</h2>
-<p>
-   To use the algorithms, you will need to have Python installed on your machine. The repository is compatible with Python 3.x.
-</p>
+<p>To build and run this project, you need to have the following tools installed</p>
 
 <h3>Prerequisites</h3>
 <ul>
@@ -19,12 +17,10 @@
 
 <h3>Installation</h3>
 <ol>
-   <li>Clone or download the repository to your local machine</li>
-   
-   <pre>
-      $ git clone https://github.com/Nitzantomer1998/LeetCode.git
-   </pre>
-  
+   <li>
+      Clone or download the repository to your local machine
+      <pre>$ git clone https://github.com/Nitzantomer1998/LeetCode.git</pre>
+   </li>
    <li>Open the project in your preferred IDE</li>
    <li>Import the desired algorithm and use it in your project</li>
 </ol>
@@ -52,15 +48,10 @@
 </ul>
 
 <h2>Support</h2>
-<p>
-   For any questions or issues, please open an issue on the GitHub repository or contact me directly.
-</p>
+<p>For any questions or issues, please open an issue on the GitHub repository or contact me directly.</p>
 
 <h2>Contributing</h2>
-<p>
-   We welcome contributions from the community. If you are interested in contributing to this project, please follow these guidelines:
-</p>
-
+<p>I welcome contributions from the community. If you are interested in contributing to this project, please follow these guidelines</p>
 <ul>
   <li>Fork the repository and create a new branch for your changes.</li>
   <li>Make your changes and ensure that the code is well-documented and properly tested.</li>
