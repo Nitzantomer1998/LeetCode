@@ -13,6 +13,7 @@
 <h3>Prerequisites</h3>
 <ul>
    <li>Python 3.x</li>
+   <li>Pycharm IDE</li>
 </ul>
 
 <h3>Installation</h3>
@@ -21,7 +22,7 @@
       Clone or download the repository to your local machine
       <pre>$ git clone https://github.com/Nitzantomer1998/LeetCode.git</pre>
    </li>
-   <li>Open the project in your preferred IDE</li>
+   <li>Open the project in Pycharm IDE</li>
    <li>Import the desired algorithm and use it in your project</li>
 </ol>
 
