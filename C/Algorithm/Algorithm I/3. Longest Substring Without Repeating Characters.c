@@ -1,3 +1,6 @@
+/* Definition for getting the maximum value */
+#define MAX(X, Y) (X > Y ? X : Y)
+
 /*
  * Calculates the length of the longest substring without repeating characters.
  *
