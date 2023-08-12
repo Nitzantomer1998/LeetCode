@@ -24,10 +24,10 @@ typedef struct {
  * A pointer to the newly created queue.
  */
 Queue* createQueue() {
-    Queue* q = (Queue*) malloc (sizeof(Queue));
-    q->front = -1;
-    q->rear = -1;
-    return q;
+    Queue* queue = (Queue*) malloc (sizeof(Queue));
+    queue->front = -1;
+    queue->rear = -1;
+    return queue;
 }
 
 /*
@@ -43,8 +43,8 @@ Queue* createQueue() {
  * Returns:
  * 'true' if the queue is empty, 'false' otherwise.
  */
-bool isEmpty(Queue* q) {
-    return q->front == -1;
+bool isEmpty(Queue* queue) {
+    return queue->front == -1;
 }
 
 /*
@@ -58,14 +58,14 @@ bool isEmpty(Queue* q) {
  * - q: A pointer to the queue.
  * - p: The pair to be enqueued.
  */
-void enqueue(Queue* q, Pair p) {
-    if (isEmpty(q))
-        q->front = q->rear = 0;
+void enqueue(Queue* queue, Pair pair) {
+    if (isEmpty(queue))
+        queue->front = queue->rear = 0;
     
     else
-        q->rear++;
+        queue->rear++;
     
-    q->data[q->rear] = p;
+    queue->data[queue->rear] = pair;
 }
 
 /*
@@ -81,16 +81,16 @@ void enqueue(Queue* q, Pair p) {
  * Returns:
  * The dequeued pair.
  */
-Pair dequeue(Queue* q) {
-    Pair p = q->data[q->front];
+Pair dequeue(Queue* queue) {
+    Pair pair = queue->data[queue->front];
 
-    if (q->front == q->rear)
-        q->front = q->rear = -1;
+    if (queue->front == queue->rear)
+        queue->front = queue->rear = -1;
     
     else
-        q->front++;
+        queue->front++;
 
-    return p;
+    return pair;
 }
 
 /*
@@ -118,13 +118,13 @@ void buildMatrix(int** mat, int matSize, int* matColSize, int** zeroDistanceArra
     *returnSize = matSize;
     *returnColumnSizes = matColSize;
     
-    Queue* q = createQueue();
+    Queue* queue = createQueue();
     
     for (int row = 0; row < matSize; row++) {
         for (int column = 0; column < matColSize[row]; column++) {
             if (mat[row][column] == 0) {
-                Pair p = {row, column};
-                enqueue(q, p);
+                Pair pair = {row, column};
+                enqueue(queue, pair);
             } 
             
             else
@@ -132,8 +132,8 @@ void buildMatrix(int** mat, int matSize, int* matColSize, int** zeroDistanceArra
         }
     }
     
-    while (!isEmpty(q)) {
-        Pair current = dequeue(q);
+    while (!isEmpty(queue)) {
+        Pair current = dequeue(queue);
         
         for (int k = 0; k < 4; k++) {
             int newRow = current.row + directions[k][0];
@@ -142,14 +142,14 @@ void buildMatrix(int** mat, int matSize, int* matColSize, int** zeroDistanceArra
             if (newRow >= 0 && newRow < matSize && newCol >= 0 && newCol < matColSize[newRow]) {
                 if (zeroDistanceArray[current.row][current.col] + 1 < zeroDistanceArray[newRow][newCol]) {
                     zeroDistanceArray[newRow][newCol] = zeroDistanceArray[current.row][current.col] + 1;
-                    Pair p = {newRow, newCol};
-                    enqueue(q, p);
+                    Pair newPair = {newRow, newCol};
+                    enqueue(queue, newPair);
                 }
             }
         }
     }
     
-    free(q);
+    free(queue);
 }
 
 /*
@@ -177,7 +177,7 @@ void buildMatrix(int** mat, int matSize, int* matColSize, int** zeroDistanceArra
 int** updateMatrix(int** mat, int matSize, int* matColSize, int* returnSize, int** returnColumnSizes) {
     int** zeroDistanceArray = (int**) malloc (sizeof(int*) * matSize);
     for (int index = 0; index < matSize; index++)
-        zeroDistanceArray[index] = (int*) calloc (matColSize[index], sizeof(int));
+        zeroDistanceArray[index] = (int*) calloc (sizeof(int), matColSize[index]);
     
     buildMatrix(mat, matSize, matColSize, zeroDistanceArray, returnSize, returnColumnSizes);
     
