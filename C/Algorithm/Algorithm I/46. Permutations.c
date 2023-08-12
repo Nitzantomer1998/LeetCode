@@ -44,7 +44,7 @@ void swapValues(int *valueA, int *valueB) {
  * using depth-first search and backtracking. It populates the 'permuted' array and updates
  * the 'returnSize' and 'returnColumnSizes' arrays to store the generated permutations.
  */
-void dfs(int* nums, int numsSize, int*** permuted, int* returnSize,  int** returnColumnSizes, int curr) {
+void addPermute(int* nums, int numsSize, int*** permuted, int* returnSize,  int** returnColumnSizes, int curr) {
     
     if (curr >= numsSize - 1) {
         *returnSize += 1;
@@ -59,7 +59,7 @@ void dfs(int* nums, int numsSize, int*** permuted, int* returnSize,  int** retur
     
     for (int index = curr; index < numsSize; index++) {
         swapValues(nums + curr, nums + index);
-        dfs(nums, numsSize, permuted, returnSize, returnColumnSizes, curr + 1);
+        addPermute(nums, numsSize, permuted, returnSize, returnColumnSizes, curr + 1);
         swapValues(nums + curr, nums + index);
     }
 }
@@ -98,7 +98,7 @@ int** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes)
     *returnColumnSizes = (int*) malloc (sizeof(int) * *returnSize);
     
     *returnSize = 0;
-    dfs(nums, numsSize, &permutatedArray, returnSize, returnColumnSizes, 0);
+    addPermute(nums, numsSize, &permutatedArray, returnSize, returnColumnSizes, 0);
     
     return permutatedArray;
 }
