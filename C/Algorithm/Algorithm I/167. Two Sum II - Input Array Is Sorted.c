@@ -24,7 +24,7 @@
  * sorted in non-decreasing order.
  */
 int* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {
-    int *indicesSolution = malloc(2 * sizeof(int));
+    int *indicesSolution = (int*) malloc(sizeof(int) * 2);
     
     int leftPointer = 0;
     int rightPointer = numbersSize - 1;
@@ -33,6 +33,7 @@ int* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {
     while (currentSum != target) {
         if (currentSum > target)
             rightPointer--;
+            
         else
             leftPointer++;
 
