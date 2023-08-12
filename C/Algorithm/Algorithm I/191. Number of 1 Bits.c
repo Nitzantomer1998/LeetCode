@@ -19,14 +19,14 @@
  * result represents the number of '1' bits in the binary representation of 'n'.
  */
 int hammingWeight(uint32_t n) {
-    int oneCounter = 0;
+    int oneBitCounter = 0;
 
     for (int index = 32; index > 0; index--) {
         if (n & 1)
-            oneCounter++;
+            oneBitCounter++;
 
         n >>= 1;
     }
 
-    return oneCounter;
+    return oneBitCounter;
 }
