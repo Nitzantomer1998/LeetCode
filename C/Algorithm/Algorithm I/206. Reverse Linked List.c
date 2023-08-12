@@ -20,17 +20,17 @@
  * 'prevNode', and it is returned as the new head of the reversed list.
  */
 struct ListNode* reverseList(struct ListNode* head) {
-   struct ListNode* prevNode = NULL;
+   struct ListNode* previousNode = NULL;
    struct ListNode* currentNode = head;
    struct ListNode* nextNode = NULL;
 
    while (currentNode) {
        nextNode = currentNode->next;
-       currentNode->next = prevNode;
+       currentNode->next = previousNode;
        
-       prevNode = currentNode;
+       previousNode = currentNode;
        currentNode = nextNode;
-   }
+    }
 
-   return prevNode;
+   return previousNode;
 }
