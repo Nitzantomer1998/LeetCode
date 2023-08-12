@@ -31,11 +31,12 @@ int searchInsert(int* nums, int numsSize, int target) {
 
     while (leftPointer <= rightPointer) {
         int middlePointer = (leftPointer + rightPointer) / 2;
+        int currentValue = nums[middlePointer];
 
-        if (nums[middlePointer] == target)
+        if (currentValue == target)
             return middlePointer;
 
-        else if (nums[middlePointer] > target)
+        else if (currentValue > target)
             rightPointer = middlePointer - 1;
 
         else
