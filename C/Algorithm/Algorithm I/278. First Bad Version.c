@@ -26,8 +26,8 @@
  * index of the first bad version found.
  */
 int firstBadVersion(int n) {
-    int leftPointer = 1;
-    int rightPointer = n;
+    long leftPointer = 1;
+    long rightPointer = n;
     
     while (leftPointer <= rightPointer) {
         int middlePointer = (rightPointer + leftPointer) / 2;
