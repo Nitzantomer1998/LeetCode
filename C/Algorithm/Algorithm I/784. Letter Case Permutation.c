@@ -1,3 +1,18 @@
+/**
+ * Generates all possible letter case permutations of a string.
+ *
+ * The 'backtrack' function generates all possible letter case permutations
+ * of the input string 's' by recursively filling the 'currentPermutation'
+ * array. It stores the generated permutations in 'permutatedArray' and
+ * updates the 'returnSize'.
+ *
+ * Parameters:
+ * - s: The input string for which to generate letter case permutations.
+ * - index: The current index being processed in the string.
+ * - currentPermutation: The current permutation being generated.
+ * - permutatedArray: An array to store the generated permutations.
+ * - returnSize: A pointer to the variable that stores the number of permutations.
+ */
 void backtrack(char* s, int index, char* currentPermutation, char** permutatedArray, int* returnSize) {
     if (index == strlen(s)) {
         permutatedArray[*returnSize] = strdup(currentPermutation);
@@ -14,6 +29,20 @@ void backtrack(char* s, int index, char* currentPermutation, char** permutatedAr
     }
 }
 
+/**
+ * Generates all possible letter case permutations of a string.
+ *
+ * The 'letterCasePermutation' function generates all possible letter case permutations
+ * of the input string 's'. It uses the 'backtrack' helper function to fill the
+ * 'permutatedArray' with the computed permutations.
+ *
+ * Parameters:
+ * - s: The input string for which to generate letter case permutations.
+ * - returnSize: A pointer to the variable that will store the number of permutations.
+ *
+ * Returns:
+ * A 2D array containing all possible letter case permutations of the input string.
+ */
 char **letterCasePermutation(char * s, int* returnSize) {
     int stringLength = strlen(s);
     int totalPermutations = 1 << stringLength;
