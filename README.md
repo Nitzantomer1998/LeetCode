@@ -1,32 +1,21 @@
 <h1>LeetCode</h1>
 <p>
-   This repository contains a collection of LeetCode algorithm problems solution in Python.<br>
+   This repository contains a collection of LeetCode algorithm problems solution.<br>
    The algorithms are from wide range of "Study Plans" including: Algorithms, Dynamic Programming, Data Structures, etc.<br>
    This repository is aimed to improve and test my problem solving skills in problem solving.
-
-   <b>Note: You might need to change algorithms name / parameters and such, as i work according to python PEP8, and not LeetCode</b>
 </p>
 
 <h2>Getting Started</h2>
-<p>To build and run this project, you need to have the following tools installed</p>
+<p>Navitage into the desired Language</p>
 
-<h3>Prerequisites</h3>
+<h3>Available Langauges</h3>
 <ul>
-   <li>Python 3.x</li>
-   <li>Pycharm IDE</li>
+   <li>Python</li>
+   <li>JavaScript</li>
+   <li>C</li>
 </ul>
 
-<h3>Installation</h3>
-<ol>
-   <li>
-      Clone or download the repository to your local machine
-      <pre><code>git clone https://github.com/Nitzantomer1998/LeetCode.git</code></pre>
-   </li>
-   <li>Open the project in Pycharm IDE</li>
-   <li>Import the desired algorithm and use it in your project</li>
-</ol>
-
-<h2>Study Planes</h2>
+<h2>Available Study Planes</h2>
 <ul>
    <li>Algorithm: Algorithm I, Algorithm II</li>
    <li>Dynamic Programming: Dynamic Programming I</li>
