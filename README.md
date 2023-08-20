@@ -11,7 +11,7 @@
 <h3>Available Langauges</h3>
 <ul>
    <li>Python</li>
-   <li>JavaScript</li>
+   <li>TypeScript</li>
    <li>C</li>
 </ul>
 
