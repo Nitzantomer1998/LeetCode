@@ -1,3 +1,8 @@
+/**
+ * Reverses the bits of a given integer.
+ * @param {number} n - The integer whose bits are to be reversed.
+ * @returns {number} The integer with reversed bits.
+ */
 function reverseBits(n: number): number {
     let reverseN: number = 0;
 
