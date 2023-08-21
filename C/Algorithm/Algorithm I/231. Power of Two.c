@@ -17,5 +17,5 @@
  * exploiting the binary representation properties of powers of two.
  */
 bool isPowerOfTwo(int n) {
-    return (n & (n - 1)) == 0 && n != 0;
+    return n > 0 && (n & (n - 1)) == 0;
 }
