@@ -1,4 +1,9 @@
-const solution = function(isBadVersion: any) {
+/**
+ * Represents a solution to find the first bad version using binary search.
+ * @param {function} isBadVersion - A function that determines if a given version is bad.
+ * @returns {function} A function that returns the first bad version.
+ */
+var solution = function(isBadVersion: any) {
 
     return function(n: number): number {
         let leftPointer: number = 1;
