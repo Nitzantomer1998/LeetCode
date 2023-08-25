@@ -1,3 +1,9 @@
+/**
+ * Searches for the position to insert a target value in a sorted array.
+ * @param {number[]} nums - The sorted array of numbers.
+ * @param {number} target - The target value to be inserted.
+ * @returns {number} The index where the target value should be inserted.
+ */
 function searchInsert(nums: number[], target: number): number {
     const numsLength: number = nums.length;
 
