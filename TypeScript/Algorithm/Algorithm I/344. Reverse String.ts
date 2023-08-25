@@ -1,3 +1,8 @@
+/**
+ * Reverses an array of characters in-place.
+ * @param {string[]} s - The array of characters to be reversed.
+ * @returns {void}
+ */
 function reverseString(s: string[]): void {
     const stringLength: number = s.length;
 
