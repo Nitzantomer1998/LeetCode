@@ -1,3 +1,8 @@
+/**
+ * Generates all possible permutations of an array of numbers.
+ * @param {number[]} nums - The array of numbers to be permuted.
+ * @returns {number[][]} An array of arrays containing all possible permutations.
+ */
 function permute(nums: number[]): number[][] {
     const numsLength: number = nums.length;
     const permutatedArray: number[][] = [[nums[0]]];
