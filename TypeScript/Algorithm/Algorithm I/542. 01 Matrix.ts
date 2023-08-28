@@ -1,3 +1,7 @@
+/**
+ * Array of directions for moving in four cardinal directions.
+ * Each direction is represented by [row, column] changes.
+ */
 const directions: [number, number][] = [
     [1, 0],   // Down
     [0, 1],   // Right
@@ -5,10 +9,23 @@ const directions: [number, number][] = [
     [0, -1]   // Left
 ];
 
+/**
+ * Checks if a given cell is a valid cell within the matrix.
+ * @param {number} matRowSize - The number of rows in the matrix.
+ * @param {number} matColumnSize - The number of columns in the matrix.
+ * @param {number} row - The row index of the cell.
+ * @param {number} column - The column index of the cell.
+ * @returns {boolean} Returns true if the cell is within the matrix bounds, otherwise false.
+ */
 function isValidCell(matRowSize: number, matColumnSize: number, row: number, column: number): boolean {
     return row >= 0 && row < matRowSize && column >= 0 && column < matColumnSize;
 }
 
+/**
+ * Updates a matrix with distances to the nearest zero element.
+ * @param {number[][]} mat - The input matrix of integers.
+ * @returns {number[][]} The updated matrix with distances to the nearest zero element.
+ */
 function updateMatrix(mat: number[][]): number[][] {
     const matRowSize: number = mat.length;
     const matColumnSize: number = mat[0].length;
