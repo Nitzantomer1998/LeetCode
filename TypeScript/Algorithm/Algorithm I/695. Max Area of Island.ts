@@ -1,3 +1,10 @@
+/**
+ * Performs a depth-first search (DFS) on a grid to count the size of an island.
+ * @param {number[][]} grid - The grid representing the island.
+ * @param {number} row - The current row index.
+ * @param {number} column - The current column index.
+ * @returns {number} The size of the island.
+ */
 function dfs(grid: number[][], row: number, column: number): number {
     if (row >= 0 && column >= 0 && row < grid.length && column < grid[0].length) {
         if (grid[row][column]) {
@@ -15,6 +22,11 @@ function dfs(grid: number[][], row: number, column: number): number {
     return 0;
 }
 
+/**
+ * Finds the maximum area of an island in the given grid.
+ * @param {number[][]} grid - The grid representing the map of islands.
+ * @returns {number} The maximum area of an island in the grid.
+ */
 function maxAreaOfIsland(grid: number[][]): number {
     let maxIslandCounter: number = 0;
     
