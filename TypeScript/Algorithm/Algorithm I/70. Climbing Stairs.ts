@@ -1,3 +1,8 @@
+/**
+ * Computes the number of distinct ways to reach the top of a staircase.
+ * @param {number} n - The total number of stairs.
+ * @returns {number} The number of distinct ways to reach the top.
+ */
 function climbStairs(n: number): number {
     let previousClimb: number = 1;
     let currentClimb: number = 2;
