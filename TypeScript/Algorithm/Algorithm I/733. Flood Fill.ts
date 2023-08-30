@@ -1,3 +1,11 @@
+/**
+ * Modifies the image by changing the color of connected cells starting from a given cell.
+ * @param {number[][]} image - The image represented as a matrix of colors.
+ * @param {number} sr - The row index of the starting cell.
+ * @param {number} sc - The column index of the starting cell.
+ * @param {number} color - The new color to be applied.
+ * @returns {number[][]} The modified image with the updated color.
+ */
 function floodFill(image: number[][], sr: number, sc: number, color: number): number[][] {
     const ROWS: number = image.length;
     const COLS: number = image[0].length;
