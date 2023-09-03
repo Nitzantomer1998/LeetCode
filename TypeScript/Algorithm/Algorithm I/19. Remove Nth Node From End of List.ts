@@ -23,14 +23,14 @@
  * @returns {number} The length of the linked list.
  */
 function getListNodeLength(head: ListNode | null): number {
-    let listNodeLength: number = 0;
-    
-    while (head) {
-        listNodeLength++;
-        head = head.next;
-    }
+  let listNodeLength: number = 0;
 
-    return listNodeLength;
+  while (head) {
+    listNodeLength++;
+    head = head.next;
+  }
+
+  return listNodeLength;
 }
 
 /**
@@ -40,18 +40,20 @@ function getListNodeLength(head: ListNode | null): number {
  * @returns {ListNode | null} The head of the linked list after removal.
  */
 function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
-    let traverse: ListNode | null = head;
-    let listNodeLength = getListNodeLength(head);
-    let deleteNodeIndex: number = listNodeLength - n - 1;
+  let traverse: ListNode | null = head;
 
-    if (listNodeLength === 1 && n === 1) return null;
-    if (listNodeLength === n) return head.next;
+  let listNodeLength: number = getListNodeLength(head);
+  let deleteNodeIndex: number = listNodeLength - n - 1;
 
-    while (deleteNodeIndex) {
-        traverse = traverse.next;
-        deleteNodeIndex--;
-    }
+  if (listNodeLength === 1 && n === 1) return null;
+  if (listNodeLength === n && head) return head.next;
 
-    traverse.next = traverse.next.next;
-    return head;
-};
+  while (deleteNodeIndex && traverse) {
+    traverse = traverse.next;
+    deleteNodeIndex--;
+  }
+
+  if (traverse && traverse.next) traverse.next = traverse.next.next;
+
+  return head;
+}
