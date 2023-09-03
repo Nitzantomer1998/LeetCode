@@ -15,23 +15,26 @@ function orangesRotting(grid: number[][]): number {
   let rottenOrangeTimer: number = 0;
 
   let directions = [
-    { row: 1, column: 0 },
-    { row: -1, column: 0 },
-    { row: 0, column: 1 },
-    { row: 0, column: -1 },
+    { row: 1, column: 0 }, // Down
+    { row: -1, column: 0 }, // Up
+    { row: 0, column: 1 }, // Right
+    { row: 0, column: -1 }, // Left
   ];
 
   for (let row: number = 0; row < ROWS; row++) {
     for (let column: number = 0; column < COLUMNS; column++) {
-      if (grid[row][column] === FRESH) freshOrangeCounter++;
-      else if (grid[row][column] === ROTTEN) rottenOrangeQueue.push({ row, column });
+      if (grid[row][column] === FRESH) 
+        freshOrangeCounter++;
+      
+      else if (grid[row][column] === ROTTEN)
+        rottenOrangeQueue.push({ row, column });
     }
   }
 
   while (freshOrangeCounter > 0 && rottenOrangeQueue.length > 0) {
-    let queueLength: number = rottenOrangeQueue.length;
+    const QUEUE_LENGTH: number = rottenOrangeQueue.length;
 
-    for (let i: number = 0; i < queueLength; i++) {
+    for (let i: number = 0; i < QUEUE_LENGTH; i++) {
       let { row, column } = rottenOrangeQueue.shift()!;
 
       for (let direction of directions) {
@@ -47,6 +50,7 @@ function orangesRotting(grid: number[][]): number {
         }
       }
     }
+    
     rottenOrangeTimer++;
   }
 
