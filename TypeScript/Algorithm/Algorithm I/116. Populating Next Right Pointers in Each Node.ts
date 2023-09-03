@@ -20,10 +20,10 @@
  * @param {Node | null} rightNode - The right node.
  */
 function updateNextPointer(leftNode: Node | null, rightNode: Node | null): void {
-    if (leftNode && rightNode) {
-        leftNode.next = rightNode;
-        updateNextPointer(leftNode.right, rightNode.left);
-    }
+  if (leftNode && rightNode) {
+    leftNode.next = rightNode;
+    updateNextPointer(leftNode.right, rightNode.left);
+  }
 }
 
 /**
@@ -32,11 +32,11 @@ function updateNextPointer(leftNode: Node | null, rightNode: Node | null): void 
  * @returns {Node | null} The root node of the modified binary tree.
  */
 function connect(root: Node | null): Node | null {
-    if (root) {
-        updateNextPointer(root.left, root.right);
-        connect(root.left);
-        connect(root.right);
-    }
-    
-    return root;
+  if (root) {
+    updateNextPointer(root.left, root.right);
+    connect(root.left);
+    connect(root.right);
+  }
+
+  return root;
 }
