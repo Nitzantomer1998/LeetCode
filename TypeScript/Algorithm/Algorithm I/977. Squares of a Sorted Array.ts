@@ -1,3 +1,8 @@
+/**
+ * Squares each element of a sorted array and returns a new array sorted in non-decreasing order.
+ * @param {number[]} nums - The sorted array of integers.
+ * @returns {number[]} A new sorted array with each element squared.
+ */
 function sortedSquares(nums: number[]): number[] {
   const numsLength: number = nums.length;
   const squareSortArray: number[] = new Array(numsLength);
