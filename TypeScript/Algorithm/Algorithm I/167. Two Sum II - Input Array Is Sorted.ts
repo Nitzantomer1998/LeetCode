@@ -5,23 +5,18 @@
  * @returns An array containing the indices of the two numbers that add up to the target.
  */
 function twoSum(numbers: number[], target: number): number[] {
-    const numbersLength: number = numbers.length;
+  const LENGTH: number = numbers.length;
 
-    let leftPointer: number = 0;
-    let rightPointer: number = numbersLength - 1;
+  let leftPointer: number = 0;
+  let rightPointer: number = LENGTH - 1;
 
-    while (leftPointer < rightPointer) {
-        const currentSum: number = numbers[leftPointer] + numbers[rightPointer];
+  while (leftPointer < rightPointer) {
+    const currentSum: number = numbers[leftPointer] + numbers[rightPointer];
 
-        if (currentSum === target)
-            return [leftPointer + 1, rightPointer + 1];
+    if (currentSum === target) return [leftPointer + 1, rightPointer + 1];
+    else if (currentSum > target) rightPointer--;
+    else leftPointer++;
+  }
 
-        else if (currentSum > target)
-            rightPointer--;
-    
-        else
-            leftPointer++;
-    }
-
-    return [leftPointer + 1, rightPointer + 1];
-};
+  return [leftPointer + 1, rightPointer + 1];
+}
