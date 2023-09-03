@@ -6,7 +6,7 @@
  * @constructor Create a ListNode.
  * @param {number} [val] - The value of the node.
  * @param {ListNode | null} [next] - The reference to the next node.
- * 
+ *
  * class ListNode {
  *     val: number;
  *     next: ListNode | null;
@@ -15,7 +15,7 @@
  *         this.next = (next === undefined ? null : next);
  *     }
  * }
-*/
+ */
 
 /**
  * Reverses a singly-linked list.
@@ -23,17 +23,17 @@
  * @returns {ListNode | null} The head of the reversed linked list.
  */
 function reverseList(head: ListNode | null): ListNode | null {
-    let currentNode: ListNode | null = head;
-    let previousNode: ListNode | null = null;
-    let nextNode: ListNode | null = null;
+  let currentNode: ListNode | null = head;
+  let previousNode: ListNode | null = null;
+  let nextNode: ListNode | null = null;
 
-    while (currentNode) {
-        nextNode = currentNode.next;
-        currentNode.next = previousNode;
+  while (currentNode) {
+    nextNode = currentNode.next;
+    currentNode.next = previousNode;
 
-        previousNode = currentNode;
-        currentNode = nextNode;
-    }
+    previousNode = currentNode;
+    currentNode = nextNode;
+  }
 
-    return previousNode;
-};
+  return previousNode;
+}
