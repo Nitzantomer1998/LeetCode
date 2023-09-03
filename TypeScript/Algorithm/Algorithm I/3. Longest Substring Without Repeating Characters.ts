@@ -5,7 +5,7 @@
  * @returns {number} The larger of the two input numbers.
  */
 function maxValue(valueA: number, valueB: number): number {
-    return valueA > valueB ? valueA : valueB;
+  return valueA > valueB ? valueA : valueB;
 }
 
 /**
@@ -14,23 +14,22 @@ function maxValue(valueA: number, valueB: number): number {
  * @returns {number} The length of the longest substring without repeating characters.
  */
 function lengthOfLongestSubstring(s: string): number {
-    const stringLength: number = s.length;
-    let longestSubstring: number = 0;
-    
-    let startPointer: number = 0;
+  const STRING_LENGTH: number = s.length;
+  let longestSubstring: number = 0;
+  let startPointer: number = 0;
 
-    const characterMap: Map<string, number> = new Map();
+  const characterMap: Map<string, number> = new Map();
 
-    for (let endPointer: number = 0; endPointer < stringLength; endPointer++) {
-        const currentChar: string = s[endPointer];
+  for (let endPointer: number = 0; endPointer < STRING_LENGTH; endPointer++) {
+    const currentChar: string = s[endPointer];
 
-        if (characterMap.has(currentChar) && characterMap.get(currentChar) >= startPointer)
-            startPointer = characterMap.get(currentChar) + 1;
-    
-        longestSubstring = maxValue(longestSubstring, endPointer - startPointer + 1);
+    if (characterMap.has(currentChar) && characterMap.get(currentChar)! >= startPointer)
+      startPointer = characterMap.get(currentChar)! + 1;
 
-        characterMap.set(currentChar, endPointer);
-    }
+    longestSubstring = maxValue(longestSubstring, endPointer - startPointer + 1);
 
-    return longestSubstring;
-};
+    characterMap.set(currentChar, endPointer);
+  }
+
+  return longestSubstring;
+}
