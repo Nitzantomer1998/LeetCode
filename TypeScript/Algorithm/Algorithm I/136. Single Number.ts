@@ -4,10 +4,10 @@
  * @returns The number that appears only once in the array.
  */
 function singleNumber(nums: number[]): number {
-    const numsLength: number = nums.length;
+  const LENGTH: number = nums.length;
 
-    for (let index: number = numsLength - 2; index >= 0; index--)
-        nums[index] ^= nums[index + 1];
+  for (let index: number = LENGTH - 2; index >= 0; index--)
+    nums[index] ^= nums[index + 1];
 
-    return nums[0];
+  return nums[0];
 }
