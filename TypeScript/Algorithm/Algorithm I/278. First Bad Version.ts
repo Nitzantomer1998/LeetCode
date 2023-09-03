@@ -3,22 +3,18 @@
  * @param {function} isBadVersion - A function that determines if a given version is bad.
  * @returns {function} A function that returns the first bad version.
  */
-var solution = function(isBadVersion: any) {
+const solution = function (isBadVersion: any): Function {
+  return function (n: number): number {
+    let leftPointer: number = 1;
+    let rightPointer: number = n;
 
-    return function(n: number): number {
-        let leftPointer: number = 1;
-        let rightPointer: number = n;
+    while (leftPointer <= rightPointer) {
+      const middlePointer: number = Math.floor((leftPointer + rightPointer) / 2);
 
-        while (leftPointer <= rightPointer) {
-            let middlePointer: number = Math.floor((leftPointer + rightPointer) / 2);
+      if (isBadVersion(middlePointer)) rightPointer = middlePointer - 1;
+      else leftPointer = middlePointer + 1;
+    }
 
-            if (isBadVersion(middlePointer))
-                rightPointer = middlePointer - 1;
-
-            else
-                leftPointer = middlePointer + 1;
-        }
-
-        return rightPointer + 1;
-    };
+    return rightPointer + 1;
+  };
 };
