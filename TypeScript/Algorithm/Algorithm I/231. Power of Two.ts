@@ -4,5 +4,5 @@
  * @returns {boolean} Returns true if the number is a power of two, otherwise false.
  */
 function isPowerOfTwo(n: number): boolean {
-    return n > 0 && (n & (n - 1)) === 0;
-};
+  return n > 0 && (n & (n - 1)) === 0;
+}
