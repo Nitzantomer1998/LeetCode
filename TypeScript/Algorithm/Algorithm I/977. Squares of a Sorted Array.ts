@@ -1,3 +1,8 @@
+/**
+ * Determines the time needed for all oranges in the grid to become rotten.
+ * @param {number[][]} grid - The grid representing the orange matrix.
+ * @returns {number} The time required for all oranges to become rotten, or -1 if not possible.
+ */
 function orangesRotting(grid: number[][]): number {
   const FRESH: number = 1;
   const ROTTEN: number = 2;
