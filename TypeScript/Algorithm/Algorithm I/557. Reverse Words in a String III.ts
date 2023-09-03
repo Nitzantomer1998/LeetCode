@@ -4,10 +4,10 @@
  * @returns {string} The string with reversed words.
  */
 function reverseWords(s: string): string {
-    const words: string[] = s.split(' ');
+  const words: string[] = s.split(" ");
 
-    for (let index = 0; index < words.length; index++)
-        words[index] = words[index].split('').reverse().join('');
+  for (let index = 0; index < words.length; index++)
+    words[index] = words[index].split("").reverse().join("");
 
-    return words.join(' ');
-};
+  return words.join(" ");
+}
