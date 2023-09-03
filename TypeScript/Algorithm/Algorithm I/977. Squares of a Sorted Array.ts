@@ -4,13 +4,13 @@
  * @returns {number[]} A new sorted array with each element squared.
  */
 function sortedSquares(nums: number[]): number[] {
-  const numsLength: number = nums.length;
-  const squareSortArray: number[] = new Array(numsLength);
+  const LENGTH: number = nums.length;
+  const squareSortArray: number[] = new Array(LENGTH);
 
   let leftPointer: number = 0;
-  let rightPointer: number = numsLength - 1;
+  let rightPointer: number = LENGTH - 1;
 
-  for (let index: number = numsLength - 1; index >= 0; index--) {
+  for (let index: number = LENGTH - 1; index >= 0; index--) {
     const squareStart: number = nums[leftPointer] ** 2;
     const squareEnd: number = nums[rightPointer] ** 2;
 
