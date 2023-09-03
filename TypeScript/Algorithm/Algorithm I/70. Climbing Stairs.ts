@@ -4,16 +4,16 @@
  * @returns {number} The number of distinct ways to reach the top.
  */
 function climbStairs(n: number): number {
-    let previousClimb: number = 1;
-    let currentClimb: number = 2;
-    let nextClimb: number = 0;
+  let previousClimb: number = 1;
+  let currentClimb: number = 2;
+  let nextClimb: number = 0;
 
-    for (let currentStair: number = 2; currentStair < n; currentStair++) {
-        nextClimb = currentClimb + previousClimb;
+  for (let currentStair: number = 2; currentStair < n; currentStair++) {
+    nextClimb = currentClimb + previousClimb;
 
-        previousClimb = currentClimb;
-        currentClimb = nextClimb;
-    }
+    previousClimb = currentClimb;
+    currentClimb = nextClimb;
+  }
 
-    return n < 3 ? n : nextClimb;
-};
+  return n < 3 ? n : nextClimb;
+}
