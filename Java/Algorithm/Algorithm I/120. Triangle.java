@@ -1,7 +1,13 @@
 import java.util.List;
 
 class Solution {
-  
+
+  /**
+   * Calculates the minimum path sum from the top to the bottom of a triangle.
+   *
+   * @param triangle A List of Lists representing the triangle with integer values.
+   * @return The minimum path sum.
+   */
   public int minimumTotal(List<List<Integer>> triangle) {
     int ROWS = triangle.size();
 
