@@ -20,8 +20,7 @@
 
 <h2>Study Plans</h2>
 <ul>
-    <li>Algorithm: Algorithm I, Algorithm II</li>
-    <li>Dynamic Programming: Dynamic Programming I</li>
+    <li>Algorithm: Algorithm I</li>
     <li>More Study Plans will be solved and uploaded over time</li>
 </ul>
 
