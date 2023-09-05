@@ -10,9 +10,10 @@
 
 <h3>Available Langauges</h3>
 <ul>
+   <li>C</li>
+   <li>Java</li>
    <li>Python</li>
    <li>TypeScript</li>
-   <li>C</li>
 </ul>
 
 <h2>Available Study Planes</h2>
