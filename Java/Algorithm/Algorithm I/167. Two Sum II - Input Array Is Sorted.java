@@ -1,5 +1,12 @@
 class Solution {
 
+  /**
+   * Finds two numbers in a sorted array that add up to a given target sum.
+   *
+   * @param numbers An array of integers sorted in ascending order.
+   * @param target  The target sum to find.
+   * @return An array containing the indices (1-based) of the two numbers that add up to the target sum.
+   */
   public int[] twoSum(int[] numbers, int target) {
     int NUMBERS_LENGTH = numbers.length;
 
