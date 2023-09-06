@@ -1,5 +1,12 @@
 class Solution {
-  
+
+  /**
+   * Calculates the maximum amount that can be robbed from houses in a row
+   * without robbing adjacent houses.
+   *
+   * @param nums An array representing the amount of money available in each house.
+   * @return The maximum amount that can be robbed without robbing adjacent houses.
+   */
   public int rob(int[] nums) {
     int NUMS_LENGTH = nums.length;
 
