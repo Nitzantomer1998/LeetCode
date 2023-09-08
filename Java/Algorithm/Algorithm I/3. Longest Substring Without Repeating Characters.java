@@ -1,5 +1,11 @@
 class Solution {
 
+  /**
+   * Calculates the length of the longest substring without repeating characters in a given string.
+   *
+   * @param s The input string.
+   * @return The length of the longest substring without repeating characters.
+   */
   public int lengthOfLongestSubstring(String s) {
     Map<Character, Integer> windowContext = new HashMap<>();
     int STRING_LENGTH = s.length();
