@@ -1,5 +1,10 @@
 class Solution {
 
+  /**
+   * Reverses a character array in place.
+   *
+   * @param s The character array to be reversed.
+   */
   public void reverseString(char[] s) {
     int STRING_LENGTH = s.length;
 
