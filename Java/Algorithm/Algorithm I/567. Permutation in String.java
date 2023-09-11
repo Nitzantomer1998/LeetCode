@@ -1,5 +1,12 @@
 class Solution {
 
+  /**
+   * Checks if a permutation of string s1 is contained within string s2.
+   *
+   * @param s1 The string to be checked for permutation.
+   * @param s2 The string where the permutation of s1 is to be checked.
+   * @return True if a permutation of s1 is found within s2, otherwise false.
+   */
   public boolean checkInclusion(String s1, String s2) {
     int S1_LENGTH = s1.length();
     int S2_LENGTH = s2.length();
