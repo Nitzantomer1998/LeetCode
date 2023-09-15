@@ -1,5 +1,12 @@
 class Solution {
 
+  /**
+   * Given an array of integers sorted in non-decreasing order, returns an array of their squares
+   * sorted in non-decreasing order.
+   *
+   * @param nums The array of integers to calculate and sort the squares of.
+   * @return An array of squared values, sorted in non-decreasing order.
+   */
   public int[] sortedSquares(int[] nums) {
     int NUMS_LENGTH = nums.length;
 
