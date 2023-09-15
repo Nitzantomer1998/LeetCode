@@ -1,5 +1,11 @@
 class Solution {
 
+  /**
+   * Determines the minimum number of minutes it takes for all oranges in a grid to rot.
+   *
+   * @param grid The grid representing the state of oranges (0 for empty, 1 for fresh, 2 for rotten).
+   * @return The minimum number of minutes to make all oranges rotten, or -1 if not possible.
+   */
   private boolean isValidCell(int[][] grid, int row, int column) {
     int ROWS = grid.length;
     int COLUMNS = grid[0].length;
