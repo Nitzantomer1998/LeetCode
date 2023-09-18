@@ -3,6 +3,15 @@ import java.util.Queue;
 
 class Solution {
 
+  /**
+   * Checks if a cell with given row and column indices is a valid cell within the grid.
+   *
+   * @param row     The row index of the cell.
+   * @param column  The column index of the cell.
+   * @param ROWS    The total number of rows in the grid.
+   * @param COLUMNS The total number of columns in the grid.
+   * @return True if the cell is valid, otherwise false.
+   */
   private boolean isValidCell(int row, int column, int ROWS, int COLUMNS) {
     boolean isValidRow = row >= 0 && row < ROWS;
     boolean isValidColumn = column >= 0 && column < COLUMNS;
@@ -10,6 +19,13 @@ class Solution {
     return isValidRow && isValidColumn;
   }
 
+  /**
+   * Finds the shortest path in a binary matrix from the top-left corner (0, 0) to the
+   * bottom-right corner (ROWS-1, COLUMNS-1).
+   *
+   * @param grid The binary matrix representing blocked (1) and unblocked (0) cells.
+   * @return The length of the shortest path or -1 if no path exists.
+   */
   public int shortestPathBinaryMatrix(int[][] grid) {
     int ROWS = grid.length;
     int COLUMNS = grid[0].length;
