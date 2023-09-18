@@ -2,7 +2,7 @@ import collections
 
 
 class Solution:
-    def is_valid_cell(self, row: int, column: int, ROWS: int, COLUMNS: int) -> bool:
+    def isValidCell(self, row: int, column: int, ROWS: int, COLUMNS: int) -> bool:
         """
         Check if a cell is valid within the grid.
 
@@ -15,10 +15,10 @@ class Solution:
         Returns:
             bool: True if the cell is valid, False otherwise.
         """
-        is_valid_row = row >= 0 and row < ROWS
-        is_valid_column = column >= 0 and column < COLUMNS
+        isValidRow = row >= 0 and row < ROWS
+        isValidColumn = column >= 0 and column < COLUMNS
 
-        return is_valid_row and is_valid_column
+        return isValidRow and isValidColumn
 
     def shortestPathBinaryMatrix(self, grid: list[list[int]]) -> int:
         """
@@ -43,21 +43,21 @@ class Solution:
             grid[0][0] = 1
 
         while queue:
-            current_level = len(queue)
+            currentLevel = len(queue)
 
-            for level in range(current_level):
-                current_row, current_column, distance = queue.popleft()
+            for level in range(currentLevel):
+                currentRow, currentColumn, distance = queue.popleft()
 
-                if current_row == ROWS - 1 and current_column == COLUMNS - 1:
+                if currentRow == ROWS - 1 and currentColumn == COLUMNS - 1:
                     return distance
 
-                for row_step, column_step in DIRECTIONS:
-                    next_row = current_row + row_step
-                    next_column = current_column + column_step
+                for rowStep, columnStep in DIRECTIONS:
+                    nextRow = currentRow + rowStep
+                    nextColumn = currentColumn + columnStep
 
-                    if self.is_valid_cell(next_row, next_column, ROWS, COLUMNS):
-                        if grid[next_row][next_column] == 0:
-                            queue.append((next_row, next_column, distance + 1))
-                            grid[next_row][next_column] = 1
+                    if self.isValidCell(nextRow, nextColumn, ROWS, COLUMNS):
+                        if grid[nextRow][nextColumn] == 0:
+                            queue.append((nextRow, nextColumn, distance + 1))
+                            grid[nextRow][nextColumn] = 1
 
         return -1
