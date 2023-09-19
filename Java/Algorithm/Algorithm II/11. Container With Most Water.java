@@ -1,5 +1,12 @@
 class Solution {
 
+  /**
+   * Finds the maximum area that can be formed by two vertical lines and the x-axis
+   * with the bars represented by the given array.
+   *
+   * @param height An array of bar heights.
+   * @return The maximum area formed by two vertical lines and the x-axis.
+   */
   public int maxArea(int[] height) {
     int HEIGHT_LENGTH = height.length;
 
