@@ -1,3 +1,10 @@
+/**
+ * Finds the length of the longest common subsequence between two input strings, `textA` and `textB`.
+ *
+ * @param textA - The first input string.
+ * @param textB - The second input string.
+ * @returns The length of the longest common subsequence.
+ */
 function longestCommonSubsequence(textA: string, textB: string): number {
   const A_LENGTH: number = textA.length + 1;
   const B_LENGTH: number = textB.length + 1;
