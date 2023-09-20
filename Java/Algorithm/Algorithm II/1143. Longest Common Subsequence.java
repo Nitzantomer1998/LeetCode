@@ -1,3 +1,10 @@
+/**
+ * Finds the length of the longest common subsequence between two strings, textA and textB.
+ *
+ * @param textA The first input string.
+ * @param textB The second input string.
+ * @return The length of the longest common subsequence.
+ */
 class Solution {
 
   public int longestCommonSubsequence(String textA, String textB) {
