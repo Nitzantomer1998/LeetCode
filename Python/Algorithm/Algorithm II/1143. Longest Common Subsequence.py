@@ -12,6 +12,7 @@ class Solution:
         """
         if valueA > valueB:
             return valueA
+        
         else:
             return valueB
 
