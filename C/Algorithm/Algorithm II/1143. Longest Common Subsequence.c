@@ -1,8 +1,23 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* Definition for getting the maximum value */
 #define MAX(X, Y) (X > Y ? X : Y)
 
+/*
+ * Calculates the length of the longest common subsequence of two strings.
+ *
+ * The 'longestCommonSubsequence' function takes two strings 'textA' and 'textB' as input
+ * and calculates the length of the longest common subsequence between these two strings using
+ * dynamic programming. It returns the length of the longest common subsequence.
+ *
+ * Parameters:
+ * - textA: The first input string.
+ * - textB: The second input string.
+ *
+ * Returns:
+ * The length of the longest common subsequence.
+ */
 int longestCommonSubsequence(char *textA, char *textB)
 {
     int A_LENGTH = strlen(textA) + 1;
