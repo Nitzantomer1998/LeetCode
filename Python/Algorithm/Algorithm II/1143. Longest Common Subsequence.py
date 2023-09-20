@@ -1,29 +1,45 @@
-def longest_common_subsequence(text1: str, text2: str) -> int:
-    """
-    Finding the length of the longest common subsequence of text1 in text2, and return it
+class Solution:
+    def maxValue(self, valueA: int, valueB: int) -> int:
+        """
+        Find the maximum value between two integers.
 
-    :param text1: String
-    :param text2: String
-    :return: The length of the longest common subsequence of text1 in text2
+        Args:
+            valueA (int): The first integer.
+            valueB (int): The second integer.
 
-    Time Complexity: o(n * m)
-    Space Complexity: o(n * m)
-    """
-    # Initialize SSL with default value of 0, SSL -> Sub Sequence Length
-    # Note : each cell [i][j] will store the highest possible length for a subsequence include the character in [i][j]
-    SSL = [[0 for _ in range(len(text2) + 1)] for _ in range(len(text1) + 1)]
+        Returns:
+            int: The maximum value between valueA and valueB.
+        """
+        if valueA > valueB:
+            return valueA
+        else:
+            return valueB
 
-    # Double loop to traverse each cell in SSL and update it
-    for row in range(1, len(text1) + 1):
-        for column in range(1, len(text2) + 1):
+    def longestCommonSubsequence(self, textA: str, textB: str) -> int:
+        """
+        Find the length of the longest common subsequence between two strings.
 
-            # if there's a match character, update SSL[row][column] to be the new subsequence length
-            if text1[row - 1] == text2[column - 1]:
-                SSL[row][column] = 1 + SSL[row - 1][column - 1]
+        Args:
+            textA (str): The first input string.
+            textB (str): The second input string.
 
-            # if the characters doesn't match, update SSL[row][column] to be the current subsequence length
-            else:
-                SSL[row][column] = max(SSL[row - 1][column], SSL[row][column - 1])
+        Returns:
+            int: The length of the longest common subsequence between textA and textB.
+        """
+        A_LENGTH = len(textA) + 1
+        B_LENGTH = len(textB) + 1
 
-    # Returning the maximum sequence length
-    return SSL[-1][-1]
+        commonSubsequence = [[0 for column in range(B_LENGTH)] for row in range(A_LENGTH)]
+
+        for row in range(1, A_LENGTH):
+            for column in range(1, B_LENGTH):
+                if textA[row - 1] == textB[column - 1]:
+                    commonSubsequence[row][column] = commonSubsequence[row - 1][column - 1] + 1
+
+                else:
+                    commonSubsequence[row][column] = self.maxValue(
+                        commonSubsequence[row - 1][column],
+                        commonSubsequence[row][column - 1]
+                    )
+
+        return commonSubsequence[A_LENGTH - 1][B_LENGTH - 1]
