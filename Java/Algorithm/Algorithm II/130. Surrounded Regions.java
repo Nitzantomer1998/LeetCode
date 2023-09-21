@@ -1,5 +1,13 @@
 class Solution {
 
+  /**
+   * Checks if a cell is within the bounds of the board.
+   *
+   * @param board 2D character array representing the board.
+   * @param row    The row index of the cell.
+   * @param column The column index of the cell.
+   * @return True if the cell is within the bounds of the board, otherwise false.
+   */
   private boolean isValidCell(char[][] board, int row, int column) {
     int ROWS = board.length;
     int COLUMNS = board[0].length;
@@ -10,13 +18,20 @@ class Solution {
     return isValidRow && isValidColumn;
   }
 
+  /**
+   * Performs depth-first search (DFS) to mark 'O' cells as 'U' in the board.
+   *
+   * @param board 2D character array representing the board.
+   * @param row    The row index of the current cell.
+   * @param column The column index of the current cell.
+   */
   private void dfs(char[][] board, int row, int column) {
     if (this.isValidCell(board, row, column) == false) 
-        return;
+      return;
 
-    if (board[row][column] != 'O')
-        return;
-    
+    if (board[row][column] != 'O') 
+      return;
+
     board[row][column] = 'U';
 
     this.dfs(board, row - 1, column);
@@ -25,6 +40,11 @@ class Solution {
     this.dfs(board, row, column + 1);
   }
 
+  /**
+   * Solves the given board by flipping 'O' regions to 'X' regions surrounded by 'X'.
+   *
+   * @param board 2D character array representing the board.
+   */
   public void solve(char[][] board) {
     int ROWS = board.length;
     int COLUMNS = board[0].length;
