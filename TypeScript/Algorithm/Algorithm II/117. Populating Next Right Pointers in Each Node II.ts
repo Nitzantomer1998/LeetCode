@@ -1,3 +1,25 @@
+/* Definition for Node
+ * class Node {
+ *   val: number;
+ *   left: Node | null;
+ *   right: Node | null;
+ *   next: Node | null;
+ *   constructor(val?: number, left?: Node, right?: Node, next?: Node) {
+ *     this.val = val === undefined ? 0 : val;
+ *     this.left = left === undefined ? null : left;
+ *     this.right = right === undefined ? null : right;
+ *     this.next = next === undefined ? null : next;
+ *   }
+ * }
+*/
+
+/**
+ * Connects each node in a binary tree to its adjacent node in the same level,
+ * using the "next" pointer.
+ *
+ * @param root - The root node of the binary tree.
+ * @returns The root node of the modified binary tree with "next" pointers set.
+ */
 function connect(root: Node | null): Node | null {
   const queue: Node[] = [root!];
 
