@@ -1,34 +1,32 @@
-def word_break(string: str, word_dict: list[str]) -> bool:
-    """
-    Finding if string can be segmented by a sequence from word_dict, and return accordingly
+from typing import List
 
-    :param string: String
-    :param word_dict: List of words which we use to built string
-    :return: True if string can be segmented by a sequence from word_dict, else False
 
-    Time Complexity: o(n * m)
-    Space Complexity: o(n)
-    """
-    # List storing in each cell True or False accordingly to a match between string and word_dict start in nth index
-    nth_word_fit = [False] * len(string)
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        """
+        Determine if a string can be segmented into words from a given dictionary.
 
-    # Append another cell to the end of the list, which will symbol success (if we reach there we found a full match)
-    nth_word_fit.append(True)
+        Args:
+            s (str): The input string to be segmented.
+            wordDict (List[str]): A list of words in the dictionary.
 
-    # Loop to traverse each character in string from end to start
-    for index in range(len(string) - 1, -1, -1):
+        Returns:
+            bool: True if the string can be segmented into words from the dictionary, False otherwise.
+        """
+        STRING_LENGTH = len(s)
 
-        # Loop to traverse each word in word_dict, and check for a match with the string
-        for word in word_dict:
+        isWordMatch = [False] * (STRING_LENGTH + 1)
+        isWordMatch[STRING_LENGTH] = True
 
-            # if adding the word keep us in boundaries, and the word is match to the specific indices in string, add it
-            if (index + len(word)) <= len(string) and string[index: index + len(word)] == word:
-                # Updating the cell according to his earlier match True / False (The loop traverse from end to start)
-                nth_word_fit[index] = nth_word_fit[index + len(word)]
+        for stringIndex in range(STRING_LENGTH, -1, -1):
+            for word in wordDict:
+                WORD_LENGTH = len(word)
 
-            # if the cell is already equal to True, means there's already a match word so stop looking for another one
-            if nth_word_fit[index]:
-                break
+                if WORD_LENGTH + stringIndex <= STRING_LENGTH:
+                    if word == s[stringIndex: stringIndex + WORD_LENGTH]:
+                        isWordMatch[stringIndex] = isWordMatch[stringIndex + WORD_LENGTH]
 
-    # Returning the solution using nth_word_fit[0] which store True if there's a solution else False
-    return nth_word_fit[0]
+                    if isWordMatch[stringIndex]:
+                        break
+
+        return isWordMatch[0]
