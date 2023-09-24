@@ -2,6 +2,22 @@
 #include <string.h>
 #include <stdlib.h>
 
+/*
+ * Determines if a string can be segmented into words from a word dictionary.
+ *
+ * The 'wordBreak' function takes an input string 's', an array of words 'wordDict', and the size
+ * of the word dictionary 'wordDictSize' as input. It checks if the input string 's' can be segmented
+ * into words from the given word dictionary. It uses dynamic programming to track whether substrings
+ * of 's' can be formed using words from the dictionary.
+ *
+ * Parameters:
+ * - s: The input string to be segmented.
+ * - wordDict: An array of words from the dictionary.
+ * - wordDictSize: The number of words in the dictionary.
+ *
+ * Returns:
+ * 'true' if 's' can be segmented into words from the dictionary, 'false' otherwise.
+ */
 bool wordBreak(char *s, char **wordDict, int wordDictSize)
 {
   int STRING_LENGTH = strlen(s);
