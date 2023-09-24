@@ -1,3 +1,9 @@
+/**
+ * Determines if a string can be segmented into words from a given word dictionary.
+ * @param s - The input string to be segmented.
+ * @param wordDict - A list of words in the dictionary.
+ * @returns True if the string can be segmented into words, otherwise false.
+ */
 function wordBreak(s: string, wordDict: string[]): boolean {
   const STRING_LENGTH: number = s.length;
   const WORDS_LENGTH: number = wordDict.length;
