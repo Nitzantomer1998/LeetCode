@@ -1,3 +1,8 @@
+/**
+ * Finds the maximum number of points on the same line that can be formed from the given set of points.
+ * @param points - A 2D array representing points as [x, y] pairs.
+ * @returns The maximum number of points on the same line.
+ */
 function maxPoints(points: number[][]): number {
   const POINTS_LENGTH: number = points.length;
 

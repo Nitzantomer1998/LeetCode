@@ -1,56 +1,35 @@
-from collections import defaultdict
+import collections
+import fractions
+from typing import List
 
 
-def max_points(points: list[list[int]]) -> int:
-    """
-    Finding the maximum number of points that lie on the same straight line, and return it
-
-    :param points: List in List of integers, represent points on graph
-    :return: The maximum number of points that lie on the same straight line
-
-    Time Complexity: o(n ^ 2)
-    Space Complexity: o(n)
-    """
-
-    # Assisting function for more readability code
-    def find_slope(p1: list, p2: list) -> float:
+class Solution:
+    def maxPoints(self, points: List[List[int]]) -> int:
         """
-        Finding the slope between the two points, and return it
+        Find the maximum number of points on the same line that can be formed by given points.
 
-        :param p1: Points
-        :param p2: Points
-        :return: the slope between the two points
+        Args:
+            points (List[List[int]]): A list of points represented as lists of coordinates [x, y].
+
+        Returns:
+            int: The maximum number of points on the same line.
         """
-        # Unpacking for nicer code
-        x1, y1 = p1
-        x2, y2 = p2
+        POINTS_LENGTH = len(points)
 
-        # if both x's are equals, then we get error of 0 division, therefore return infinity
-        if x1 == x2:
-            return float('infinity')
+        maxPoints = 0
 
-        # Returning the slope between the points
-        return (y1 - y2) / (x1 - x2)
+        for i in range(POINTS_LENGTH):
+            slopeDict = collections.defaultdict(int)
+            localMax = 0
 
-    # MPOL -> Max Points On Line, integer storing the maximum points on the same line
-    MPOL = 0
+            for j in range(i + 1, POINTS_LENGTH):
+                X1, Y1 = points[i]
+                X2, Y2 = points[j]
 
-    # Loop to travers each points in the list
-    for i in range(len(points)):
+                currentSlope = 'vertical' if X1 == X2 else fractions.Fraction(Y2 - Y1, X2 - X1)
+                slopeDict[currentSlope] += 1
+                localMax = max(localMax, slopeDict[currentSlope])
 
-        # Creating slopes dictionary for counting each points on the calculated slop
-        slopes = defaultdict(int)
+            maxPoints = max(maxPoints, localMax + 1)
 
-        # Loop to traverse on points, and calculate each slope
-        for j in range(i + 1, len(points)):
-            # Getting the slope between the two points
-            slope = find_slope(points[i], points[j])
-
-            # Increase the slope counter in the dictionary
-            slopes[slope] += 1
-
-            # Update the maximum number of points on a possible slope
-            MPOL = max(slopes[slope], MPOL)
-
-    # Returning the maximum number of points that lie on the same straight line
-    return MPOL + 1
+        return maxPoints
