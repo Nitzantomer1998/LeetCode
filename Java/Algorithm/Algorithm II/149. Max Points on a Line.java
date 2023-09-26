@@ -3,6 +3,12 @@ import java.util.Map;
 
 class Solution {
 
+  /**
+   * Given an array of points, calculates the maximum number of points on the same line that can be formed.
+   *
+   * @param points An array of points where each point is represented as an array [X, Y].
+   * @return The maximum number of points on the same line.
+   */
   public int maxPoints(int[][] points) {
     int maxPoints = 0;
 

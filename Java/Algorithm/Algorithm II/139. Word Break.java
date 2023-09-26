@@ -1,12 +1,5 @@
 class Solution {
 
-  /**
-   * Determines if a given string can be segmented into words from the word dictionary.
-   *
-   * @param s         The input string to be segmented.
-   * @param wordDict  A list of words in the dictionary.
-   * @return True if the input string can be segmented into words from the dictionary; otherwise, false.
-   */
   public boolean wordBreak(String s, List<String> wordDict) {
     int STRING_LENGTH = s.length();
     int WORDS_LENGTH = wordDict.size();
