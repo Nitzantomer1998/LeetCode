@@ -43,5 +43,6 @@ bool wordBreak(char *s, char **wordDict, int wordDictSize)
 
   bool result = isWordMatch[STRING_LENGTH];
   free(isWordMatch);
+
   return result;
 }
