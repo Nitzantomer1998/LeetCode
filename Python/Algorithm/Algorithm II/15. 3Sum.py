@@ -1,53 +1,45 @@
-def three_sum(numbers: list[int]) -> list[list[int]]:
-    """
-    Finding all the three sum options in numbers without duplicates that equal to zero, and return them
+from typing import List
 
-    :param numbers: List of integers
-    :return: All the three sum options in numbers without duplicates that equal to zero
 
-    Time Complexity: o(n ^ 2)
-    Space Complexity: o(n)
-    """
-    # Sorting the numbers -> O(nlog(n))
-    numbers.sort()
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        """
+        Find all unique triplets in the array that sum to zero.
 
-    # List storing the solutions
-    three_sum_solution = []
+        Args:
+            nums (List[int]): A list of integers.
 
-    # Loop to traverse the numbers list
-    for i in range(len(numbers) - 2):
+        Returns:
+            List[List[int]]: A list of lists containing unique triplets that sum to zero.
+        """
+        NUMS_LENGTH = len(nums)
 
-        # if the current numbers[i] equal to the previous numbers[i - 1], then we skip in order to avoid duplications
-        if i > 0 and numbers[i] == numbers[i - 1]:
-            continue
+        uniqueSolution = []
 
-        # Left & Right pointers for moving on the left available indices [i + 1 ... len(numbers) - 1]
-        left, right = i + 1, len(numbers) - 1
+        nums.sort()
 
-        # Loop to traverse the pointers left and right, in order to achieve the desire sum
-        while left < right:
+        for i in range(NUMS_LENGTH):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
 
-            # Storing the current sum, for more readable code
-            current_sum = numbers[i] + numbers[left] + numbers[right]
+            left = i + 1
+            right = NUMS_LENGTH - 1
 
-            # if the current sum is larger than zero, than we need to lower the sum, therefor right moving to the left
-            if current_sum > 0:
-                right -= 1
+            while left < right:
+                currentSum = nums[i] + nums[left] + nums[right]
 
-            # if the current sum is lower than zero, than we need to enlarge the sum, therefor left moving to the right
-            elif current_sum < 0:
-                left += 1
-
-            # if We got the desirable sum, save the solution, and update the pointers
-            else:
-                three_sum_solution.append([numbers[i], numbers[left], numbers[right]])
-
-                # Update left pointer
-                left += 1
-
-                # Loop to fix the left pointer, if numbers[l] equal to numbers[l - 1] we will get duplicate solution
-                while left < right and numbers[left] == numbers[left - 1]:
+                if currentSum < 0:
                     left += 1
 
-    # Returning all the three sum options in numbers without duplicates that equal to zero
-    return three_sum_solution
+                elif currentSum > 0:
+                    right -= 1
+
+                else:
+                    uniqueSolution.append([nums[i], nums[left], nums[right]])
+
+                    left += 1
+
+                    while left < right and nums[left] == nums[left - 1]:
+                        left += 1
+
+        return uniqueSolution
