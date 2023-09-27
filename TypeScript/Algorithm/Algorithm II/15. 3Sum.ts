@@ -1,3 +1,8 @@
+/**
+ * Finds all unique triplets in the given array of numbers that sum up to zero.
+ * @param nums - An array of numbers.
+ * @returns An array of unique triplets that sum up to zero.
+ */
 function threeSum(nums: number[]): number[][] {
   const NUMS_LENGTH: number = nums.length;
 
