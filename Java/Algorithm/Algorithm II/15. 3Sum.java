@@ -4,6 +4,12 @@ import java.util.List;
 
 class Solution {
 
+  /**
+   * Given an array of integers, finds all unique triplets that sum to zero (0).
+   *
+   * @param nums An array of integers where triplets are to be found.
+   * @return A list of lists containing unique triplets that sum to zero (0).
+   */
   public List<List<Integer>> threeSum(int[] nums) {
     int NUMS_LENGTH = nums.length;
 
