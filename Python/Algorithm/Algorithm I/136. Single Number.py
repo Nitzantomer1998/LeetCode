@@ -1,22 +1,20 @@
-def single_number(numbers: list[int]) -> int:
-    """
-    Finding the unique element in am array which every element appears twice except for one. and return it.
+from typing import List
 
-    :param numbers: List of integers
-    :return: The unique number
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable to store the solution
-    single_number_solution = 0
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        """
+        Find the single number in an array where every element appears twice except for one.
 
-    # Loop to traverse all the numbers
-    for value in numbers:
-        # Update the single number solution by making XOR operator with all the available numbers
-        # Note : XOR operator return 1 only if the two bits values are difference, else it will be 0
-        # Therefor only when we hit the True single number, the bits wouldn't change till we finished
-        single_number_solution ^= value
+        Args:
+            nums (List[int]): A list of integers.
 
-    # Return the single number solution
-    return single_number_solution
+        Returns:
+            int: The single number.
+        """
+        uniqueValue = 0
+    
+        for value in nums:
+            uniqueValue ^= value
+
+        return uniqueValue
