@@ -1,49 +1,42 @@
-# Class provided by LeetCode for the following problem
+from typing import Optional
+import collections
+
+
+"""
+# Definition for a Node.
 class Node:
-    def __init__(self, value: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
-        self.value = value
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
         self.left = left
         self.right = right
         self.next = next
+"""
 
 
-def connect(root: 'Node') -> 'Node':
-    """
-    Populate each next pointer to point to its next right node if exists, else null, and return the perfect binary tree
-
-    :param root: Root node of a perfect binary tree
-    :return: The modified perfect binary tree
-
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-
-    # Assisting function to make the DFS calls
-    def updating_node_next_pointer(root: 'Node') -> 'Node':
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
         """
-        Recursive function for modifying each node next pointer using DFS Algorithm
+        Connect nodes at the same level in a binary tree with a next pointer.
 
-        :param root: Node
-        :return: The updated root / node next pointer
+        Args:
+            root (Optional[Node]): The root node of the binary tree.
+
+        Returns:
+            Optional[Node]: The root node of the modified binary tree with next pointers.
         """
-        # if the current node has a left child
-        if root and root.left:
+        queue = collections.deque([root])
 
-            # Making 2 recursive callback for each child of the current node
-            left = updating_node_next_pointer(root.left)
-            right = updating_node_next_pointer(root.right)
+        while queue and queue[0]:
+            level = len(queue)
 
-            # While loop for updating the next pointer
-            while left:
-                # Updating the next pointer
-                left.next = right
+            for currentLevel in range(level):
+                currentNode = queue.popleft()
 
-                # Updating the nodes
-                left = left.right
-                right = right.left
+                if currentLevel < level - 1:
+                    currentNode.next = queue[0]
 
-        # Returning the modified current node
+                if currentNode.left and currentNode.right:
+                    queue.append(currentNode.left)
+                    queue.append(currentNode.right)
+
         return root
-
-    # Calling for the recursive call which modified the tree next pointers, and return it
-    return updating_node_next_pointer(root)
