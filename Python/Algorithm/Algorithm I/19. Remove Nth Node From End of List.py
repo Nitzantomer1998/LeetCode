@@ -1,41 +1,32 @@
-# Class provided by LeetCode for the following problem
-class ListNode:
-    def __init__(self, value=0, next=None):
-        self.value = value
-        self.next = next
+from typing import Optional
 
 
-def remove_nth_from_end(head: ListNode, n: int) -> ListNode:
-    """
-    Removing the nth node from the end of the list, and return its head
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        """
+        Remove the n-th node from the end of a linked list.
 
-    :param head: ListNode
-    :param n: Integer represent the nth node from the end of the list that we need to remove
-    :return: The head of the modified list node
+        Args:
+            head (Optional[ListNode]): The head of the linked list.
+            n (int): The position of the node to be removed from the end.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # ListNodes pointing to the head
-    short_nodelist = long_nodelist = head
+        Returns:
+            Optional[ListNode]: The head of the modified linked list.
 
-    # Pushing the long ListNode n steps ahead to create a gap of n nodes with the short ListNode
-    for _ in range(n):
-        # Skipping the first n nodes of the long nodelist, if exist
-        long_nodelist = long_nodelist.next
+        Time Complexity: o(n) where n is the length of the linked list.
+        Space Complexity: o(1)
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        fast = slow = dummy
 
-    # if after we create the gap we need, the next node isn't exist, return the special case solution
-    if long_nodelist is None:
-        return head.next
+        for _ in range(n + 1):
+            fast = fast.next
 
-    # After we create the needed gap between the lists, we continue by moving both of them forward, until the long
-    # list reach to its end, than we stop and know that the next node of the short list need to be skipped
-    while long_nodelist.next:
-        long_nodelist = long_nodelist.next
-        short_nodelist = short_nodelist.next
+        while fast:
+            fast = fast.next
+            slow = slow.next
 
-    # The next node is the desire node to be removed, then we update his next pointer to move 2 times forwards
-    short_nodelist.next = short_nodelist.next.next
+        slow.next = slow.next.next if slow.next else None
 
-    # Return the modified nodelist
-    return head
+        return dummy.next
