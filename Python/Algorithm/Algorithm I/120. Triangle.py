@@ -11,6 +11,9 @@ class Solution:
 
         Returns:
             int: The minimum path sum.
+
+        Time Complexity: o(n) where n is the number of elements in the triangle.
+        Space Complexity: o(1)
         """
         ROWS = len(triangle)
 
