@@ -11,6 +11,9 @@ class Solution:
 
         Returns:
             int: The single number.
+
+        Time Complexity: o(n) where n is the number of elements in the array.
+        Space Complexity: o(1)
         """
         uniqueValue = 0
     
