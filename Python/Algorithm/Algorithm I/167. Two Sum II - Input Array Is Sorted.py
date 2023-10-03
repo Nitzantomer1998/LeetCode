@@ -12,6 +12,9 @@ class Solution:
 
         Returns:
             List[int]: A list containing the indices of the two numbers that add up to the target.
+
+        Time Complexity: o(n) where n is the number of elements in the array.
+        Space Complexity: o(1)
         """
         NUMBERS_LENGTH = len(numbers)
 
