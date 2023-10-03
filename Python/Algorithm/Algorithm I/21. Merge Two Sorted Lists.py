@@ -1,56 +1,35 @@
-# Class provided by LeetCode for the following problem
-class ListNode:
-    def __init__(self, value=0, next=None):
-        self.value = value
-        self.next = next
+from typing import Optional
 
 
-def merge_two_lists(list1: ListNode, list2: ListNode) -> ListNode:
-    """
-    Merging the two lists in a one sorted list, and return it
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        Merge two sorted linked lists into a new sorted linked list.
 
-    :param list1: Sorted ListNode
-    :param list2: Sorted ListNode
-    :return: The merged ListNode
+        Args:
+            list1 (Optional[ListNode]): The head of the first sorted linked list.
+            list2 (Optional[ListNode]): The head of the second sorted linked list.
 
-    Time Complexity: o(n + m)
-    Space Complexity: o(n + m)
-    """
-    # Storing the ListNode head (Solution), and a pointer to the current node
-    solution_nodelist = ListNode()
-    current_node = solution_nodelist
+        Returns:
+            Optional[ListNode]: The head of the merged sorted linked list.
 
-    # Loop to traverse the lists, and updating the solution list
-    while list1 and list2:
+        Time Complexity: o(n) where n is the length of the longer linked list.
+        Space Complexity: o(1)
+        """
+        mergedList = ListNode(0)
+        buildMergedList = mergedList
 
-        # if the list1 node is lower than list2 node
-        if list1.value < list2.value:
+        while list1 and list2:
+            if list1.val < list2.val:
+                buildMergedList.next = list1
+                list1 = list1.next
 
-            # Updating the next node value
-            current_node.next = list1
+            else:
+                buildMergedList.next = list2
+                list2 = list2.next
 
-            # Updating the list1 next pointer
-            list1 = list1.next
+            buildMergedList = buildMergedList.next
 
-        # if the list2 node is lower than list1 node
-        else:
+        buildMergedList.next = list1 or list2
 
-            # Updating the next node value
-            current_node.next = list2
-
-            # Updating the list2 next pointer
-            list2 = list2.next
-
-        # Updating the solution node next pointer
-        current_node = current_node.next
-
-    # Edge case: list2 is None, therefor the current_node.next equal to the rest of list1
-    if list1:
-        current_node.next = list1
-
-    # Edge case: list1 is None, therefor the current_node.next equal to the rest of list2
-    if list2:
-        current_node.next = list2
-
-    # Returning the creating nodelist solution
-    return solution_nodelist.next
+        return mergedList.next
