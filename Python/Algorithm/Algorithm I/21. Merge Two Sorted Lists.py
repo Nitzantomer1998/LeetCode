@@ -14,7 +14,7 @@ class Solution:
             Optional[ListNode]: The head of the merged sorted linked list.
 
         Time Complexity: o(n) where n is the length of the longer linked list.
-        Space Complexity: o(1)
+        Space Complexity: o(1) since we are not using any additional space.
         """
         mergedList = ListNode(0)
         buildMergedList = mergedList
