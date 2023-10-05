@@ -1,35 +1,28 @@
-def length_of_longest_substring(string: str) -> str:
-    """
-    Finding the maximum length of a non-duplicate substring of the sent string, and return it
+import collections
 
-    :param string: String
-    :return: The maximum length of non-duplicate substring
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        """
+        Find the length of the longest substring without repeating characters.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable to store the longest length of a substring
-    longest_substring_length = 0
+        Args:
+            s (str): Input string.
 
-    # Dictionary to store [Char : Index] pairs of the visited characters
-    char_dictionary = {}
+        Returns:
+            int: Length of the longest substring without repeating characters.
 
-    # Start index of the substring
-    start_index = 0
+        Time Complexity: o(n^2) where n is the length of the input string.
+        Space Complexity: o(n) where n is the length of the input string.
+        """
+        longestSubstring = 0
+                
+        currentWindow = collections.OrderedDict()    
+        
+        for index, char in enumerate(s):
+            while char in currentWindow:
+                currentWindow.popitem(last=False)
+            
+            longestSubstring = max(longestSubstring, len(currentWindow) + 1)
+            currentWindow[char] = index
 
-    # Loop to traverse every character in the string
-    for index, char in enumerate(string):
-
-        # if we found a duplicate char in the current substring, update the start index of the new substring
-        if char in char_dictionary and start_index <= char_dictionary[char]:
-            start_index = char_dictionary[char] + 1
-
-        # if the current substring didn't end, update the maximum substring length
-        else:
-            longest_substring_length = max(longest_substring_length, index - start_index + 1)
-
-        # Add the current pair [Char : Index] into the char dictionary
-        char_dictionary[char] = index
-
-    # Return the longest substring length
-    return longest_substring_length
+        return longestSubstring
