@@ -13,7 +13,7 @@ class Solution:
             int: The minimum path sum.
 
         Time Complexity: o(n) where n is the number of elements in the triangle.
-        Space Complexity: o(1)
+        Space Complexity: o(1) since we are not using any additional space.
         """
         ROWS = len(triangle)
 
