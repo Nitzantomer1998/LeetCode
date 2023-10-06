@@ -1,38 +1,45 @@
-def permute(numbers: list[int]) -> list[list[int]]:
-    """
-    Creating all the possible permutations out of numbers, and return it
+from typing import List
 
-    :param numbers: List of integers
-    :return: All the possible permutations out of numbers
-
-    Time Complexity: o(n * n!)
-    Space Complexity: o(n * n!)
-    """
-    # List to store all the possible permutation
-    permute_solution = []
-
-    # Assisting function to make the DFS calls
-    def add_permute(current_permute: list[int], digits_left: list[int]) -> None:
+class Solution:
+    def generatePermute(self, permutations: List[List[int]], currentPermute: List[int], nums: List[int], used: List[bool]) -> None:
         """
-        Adding all the possible permutation that start with the current_digit
+        Generate all possible permutations of a list of integers using backtracking.
 
-        :param current_permute: List Representing the current built permutation
-        :param digits_left: List filled with digits we yet used for the current permutation
-        :return: Nothing, everything happens in place
+        Args:
+            permutations (List[List[int]]): A list to store the generated permutations.
+            currentPermute (List[int]): The current permutation being constructed.
+            nums (List[int]): The input list of integers.
+            used (List[bool]): A list to track used elements during the generation process.
+
+        Returns:
+            None: The function modifies the 'permutations' list in-place.
+
+        Time Complexity: o(n * n!) where n is the length of the input list.
+        Space Complexity: o(n * n!) where n is the length of the input list.
         """
-        # if we have built full permutation, add permutation to solution and end call
-        if len(digits_left) == 0:
-            permute_solution.append(current_permute)
+        if len(currentPermute) == len(nums):
+            permutations.append(currentPermute.copy())
             return
 
-        # if we haven't finished to build a permutation, make callback for each possible next digit
-        for next_digit in digits_left:
-            # Making the callback for the next step for the permutation, with updating the left needed digits
-            add_permute(current_permute + [next_digit], [digit for digit in digits_left if digit != next_digit])
+        for index, value in enumerate(nums):
+            if not used[index]:
+                used[index] = True
+                currentPermute.append(value)
+                self.generatePermute(permutations, currentPermute, nums, used)
+                used[index] = False
+                currentPermute.pop()
 
-    # Making callback for each digit in numbers, which will add the possible permutations starting with the digit
-    for digit in numbers:
-        add_permute([digit], [value for value in numbers if value != digit])
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        """
+        Generate all possible permutations of a list of integers.
 
-    # Returning the built solution
-    return permute_solution
+        Args:
+            nums (List[int]): The input list of integers.
+
+        Returns:
+            List[List[int]]: A list containing all possible permutations.
+        """
+        permutations = []
+        used = [False] * len(nums)
+        self.generatePermute(permutations, [], nums, used)
+        return permutations
