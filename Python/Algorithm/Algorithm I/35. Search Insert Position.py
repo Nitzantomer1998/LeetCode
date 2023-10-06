@@ -1,47 +1,36 @@
-def search_insert(numbers: list[int], target: int) -> int:
-    """
-    Searching for target in numbers, if exist return it index, else return its appropriate index to keep ascending order
+from typing import List
 
-    :param numbers: List of integers sorted by ascending order
-    :param target: Integer represent desire value in numbers
-    :return: The index of target in numbers if exist else its appropriate index to keep ascending order
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        """
+        Search for the target value in a sorted list. If the target is not found, return the index where it should be inserted.
 
-    Time Complexity: o(log(n))
-    Space Complexity: o(1)
-    """
-    # Variable to store the index solution
-    insert_solution = 0
+        Args:
+            nums (List[int]): A list of integers.
+            target (int): The target value to search for.
 
-    # Pointers to current array we are searching at
-    left, right = 0, len(numbers) - 1
+        Returns:
+            int: The index of the target value if found, or the index where it should be inserted.
 
-    # Loop to traverse numbers without repeating
-    while left <= right:
+        Time Complexity: o(log(n)) where n is the length of the input list.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        NUMS_LENGTH = len(nums)
 
-        # Variable to store the middle index of the current container we are searching at
-        middle = (right + left) // 2
+        leftPointer = 0
+        rightPointer = NUMS_LENGTH - 1
 
-        # if we found the desire target, return its index
-        if numbers[middle] == target:
-            return middle
+        while leftPointer <= rightPointer:
+            middlePointer = leftPointer + (rightPointer - leftPointer) // 2
+            middleValue = nums[middlePointer]
 
-        # if numbers[middle] is bigger
-        elif numbers[middle] > target:
+            if middleValue == target:
+                return middlePointer
 
-            # Update the current possible insert solution
-            insert_solution = middle
+            elif middleValue < target:
+                leftPointer = middlePointer + 1
 
-            # Narrow the container to be [left, middle - 1]
-            right = middle - 1
+            else:
+                rightPointer = middlePointer - 1
 
-        # if numbers[middle] is lower
-        else:
-
-            # Update the current possible insert solution
-            insert_solution = middle + 1
-
-            # Narrow the container to be [middle + 1, right]
-            left = middle + 1
-
-    # if we reach here, then target isn't exist in numbers, return the appropriate index
-    return insert_solution
+        return rightPointer + 1
