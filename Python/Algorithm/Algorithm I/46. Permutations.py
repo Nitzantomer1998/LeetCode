@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def generatePermute(self, permutations: List[List[int]], currentPermute: List[int], nums: List[int], used: List[bool]) -> None:
         """
