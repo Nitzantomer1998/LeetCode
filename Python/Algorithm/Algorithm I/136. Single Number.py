@@ -13,7 +13,7 @@ class Solution:
             int: The single number.
 
         Time Complexity: o(n) where n is the number of elements in the array.
-        Space Complexity: o(1)
+        Space Complexity: o(1) since we are not using any additional space.
         """
         uniqueValue = 0
     
