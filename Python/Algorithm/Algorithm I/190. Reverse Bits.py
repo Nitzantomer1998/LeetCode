@@ -1,23 +1,22 @@
-def reverse_bits(number: int) -> int:
-    """
-    Reversing the bits of a given 32 bits unsigned integer, and return it
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        """
+        Reverse the bits of a 32-bit unsigned integer.
 
-    :param number: 32 bits unsigned integer
-    :return: The reversed bits of number
+        Args:
+            n (int): A 32-bit unsigned integer.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable to store the reverse bits of number
-    reversed_bits_solution = 0
+        Returns:
+            int: The integer with reversed bits.
 
-    # Loop to traverse each bit
-    for _ in range(32):
-        # Update the reversed_bits_solution, by shift to left once and insert the new bit
-        reversed_bits_solution = (reversed_bits_solution << 1) + (number & 1)
+        Time Complexity: o(1) since we are only looping 32 times.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        reversedValue = 0
 
-        # Update the number by shift to right once, which will give us the next bit
-        number >>= 1
+        for _ in range(32):
+            bitValue = (n & 1)
+            reversedValue = (reversedValue << 1) + bitValue
+            n >>= 1
 
-    # Return the reversed bit
-    return reversed_bits_solution
+        return reversedValue
