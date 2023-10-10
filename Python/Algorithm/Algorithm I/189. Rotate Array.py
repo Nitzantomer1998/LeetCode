@@ -1,39 +1,44 @@
-def rotate(numbers: list[int], step_amount: int) -> None:
-    """
-    Rotating the array to the right, step_amount times
+from typing import List
 
-    :param numbers: List of integers
-    :param step_amount: Integer represent the amount of rotates need to be done
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Activating modulo operator (%), to handle negative step_amount
-    step_amount -= int(step_amount / len(numbers)) * len(numbers)
-
-    # Assisting function for reversing array
-    def reverse(start: int, end: int) -> None:
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
         """
-        Reversing the numbers list from index start till index end
+        Rotate an array to the right by k steps in-place.
 
-        :param start: Integer represent the start of the array
-        :param end: Integer represent the end of the array
-        :return: Nothing, everything happens in place
+        Args:
+            nums (List[int]): A list of integers.
+            k (int): The number of steps to rotate.
 
+        Returns:
+            None
+
+        Time Complexity: o(n) where n is the number of elements in the array.
+        Space Complexity: o(1) since we are not using any additional space.
         """
-        # Loop to reverse the list from index start to index end
+        NUMS_LENGTH = len(nums)
+        k = k % NUMS_LENGTH
+
+        self.reverse(nums, 0, NUMS_LENGTH - 1)
+        self.reverse(nums, 0, k - 1)
+        self.reverse(nums, k, NUMS_LENGTH - 1)
+
+    def reverse(self, nums: List[int], start: int, end: int) -> None:
+        """
+        Reverse a portion of the array in-place.
+
+        Args:
+            nums (List[int]): A list of integers.
+            start (int): The starting index for the reverse operation.
+            end (int): The ending index for the reverse operation.
+
+        Returns:
+            None
+
+        Time Complexity: o(n) where n is the number of elements in the array from start to end.
+        Space Complexity: o(1)
+        """
         while start < end:
-            numbers[start], numbers[end] = numbers[end], numbers[start]
-
-            # Update the pointers
+            nums[start], nums[end] = nums[end], nums[start]
             start += 1
             end -= 1
-
-    # Reversing the whole list
-    reverse(0, len(numbers) - step_amount - 1)
-
-    # Reversing the first step_amount elements (instead of the last)
-    reverse(len(numbers) - step_amount, len(numbers) - 1)
-
-    # Reversing back the whole list
-    reverse(0, len(numbers) - 1)
