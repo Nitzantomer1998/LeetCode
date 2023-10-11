@@ -1,27 +1,23 @@
-def hamming_weight(number: int) -> int:
-    """
-    counting the amount of 1 value bits in number, and return it
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        """
+        Count the number of '1' bits in the binary representation of an integer.
 
-    :param number: Unsigned Integer represented in the bit presentation
-    :return: The amount of 1 value bits in number
+        Args:
+            n (int): An integer.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable Storing the value 1 bits counter
-    ones_counter = 0
+        Returns:
+            int: The number of '1' bits.
 
-    # Loop to traverse every bit in number
-    while number:
-        # Note : & operator performs bit by bit AND operation on the two values,
-        # if both bits equals 1 then output 1, else 0.
-        # Therefor number & 1 return 1 only if the LSB bit in number is 1, else 0
-        # so our counter will be updated according to the bit
-        ones_counter += number & 1
+        Time Complexity: o(n) where n is the number of bits in the binary representation of the integer.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        oneBitCounter = 0
 
-        # Updating the terms for the next iteration
-        # Note : >> operator performs shift to right by number of bits stipulated by second operand, for now is 1
-        number >>= 1
+        while n > 0:
+            LSB_Value = n & 1
+            oneBitCounter += LSB_Value
 
-    # Returning the amount of 1 value bits in number
-    return ones_counter
+            n >>= 1
+
+        return oneBitCounter
