@@ -1,25 +1,27 @@
-def rob(numbers: list[int]) -> int:
-    """
-    Finding the maximum amount of money you can rob tonight without alerting the police, and return it
-    Note : if you visit an adjacent the cops will show up
+from typing import List
 
-    :param numbers: List of integers Representing amount of money in each house
-    :return: The maximum amount of money you can rob tonight without alerting the police
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable to store the maximum profit
-    current_max_profit = 0
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        """
+        Determine the maximum amount of money that can be robbed without alerting the police.
 
-    # Variable to hold the alter option for max profit
-    optional_max_profit = 0
+        Args:
+            nums (List[int]): A list of non-negative integers representing the amount of money in each house.
 
-    # Loop to calculate the current maximum profit for the current value
-    for value in numbers:
-        # Updating the new max profit, and updating the optional max profit
-        optional_max_profit, current_max_profit = current_max_profit, max(value + optional_max_profit,
-                                                                          current_max_profit)
+        Returns:
+            int: The maximum amount of money that can be robbed.
 
-    # Returning the maximum possible profit
-    return current_max_profit
+        Time Complexity: o(n) where n is the number of houses.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        NUMS_LENGTH = len(nums)
+        nums.append(0)
+
+        for index in range(NUMS_LENGTH - 3, -1, -1):
+            firstOption = nums[index + 3]
+            secondOption = nums[index + 2]
+
+            nums[index] += max(firstOption, secondOption)
+
+        return max(nums[0], nums[1])
