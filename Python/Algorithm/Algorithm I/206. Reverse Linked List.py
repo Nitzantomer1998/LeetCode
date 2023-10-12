@@ -1,37 +1,28 @@
-# Class provided by LeetCode for the following problem
-class ListNode:
-    def __init__(self, value=0, next=None):
-        self.value = value
-        self.next = next
+from typing import Optional
 
 
-def reverse_list(head: ListNode) -> ListNode:
-    """
-    Reversing the ListNode, and return it
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        Reverse a singly-linked list in-place.
 
-    :param head: ListNode
-    :return: The reversed ListNode
+        Args:
+            head (Optional[ListNode]): The head of the linked list.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Storing the current node
-    current_node = head
+        Returns:
+            Optional[ListNode]: The head of the reversed linked list.
 
-    # Storing the previous node
-    previous_node = None
+        Time Complexity: o(n) where n is the length of the linked list.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        previousNode = None
+        currentNode = head
 
-    # Loop to traverse the ListNode
-    while current_node:
-        # Save the next node
-        next_node = current_node.next
+        while currentNode:
+            nextNode = currentNode.next
+            currentNode.next = previousNode
 
-        # Update the current_node next pointer to be the previous node
-        current_node.next = previous_node
+            previousNode = currentNode
+            currentNode = nextNode
 
-        # Update the previous and current nodes, for the next iteration
-        previous_node = current_node
-        current_node = next_node
-
-    # Return the new head of the ListNode
-    return previous_node
+        return previousNode
