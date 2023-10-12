@@ -1,14 +1,18 @@
-def is_power_of_two(number: int) -> bool:
-    """
-    Checking if number is a power of two, if yes return True, else return False
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        """
+        Check if a given integer is a power of two.
 
-    :param number: Unsigned Integer
-    :return: True if number is power of 2, else False
+        Args:
+            n (int): An integer.
 
-    Time Complexity: o(1)
-    Space Complexity: o(1)
-    """
-    # Returning whether the number is power of 2
-    # Note : & operator performs bit by bit AND operation on the two values, if both bits equals 1 then output 1, else 0
-    # Special case to detect if number is power be by checking if number & (number - 1) equal to 0
-    return number > 0 and number & (number - 1) == 0
+        Returns:
+            bool: True if the given integer is a power of two, False otherwise.
+
+        Time Complexity: o(1) since we are only make a 2 comparisons.
+        Space Complexity: o(1) since we are not using any additional space.
+        """
+        isPositive = n > 0
+        isTwoPower = n & (n - 1) == 0
+
+        return isPositive and isTwoPower
