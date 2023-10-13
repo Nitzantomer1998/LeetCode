@@ -1,34 +1,30 @@
-def move_zeroes(numbers: list[int]) -> None:
-    """
-    Update numbers by moving all zero's to the end, while maintaining relative order of the non-zero elements
-    :param numbers: List of integers
-    :return: None, Everything happen in place
+import collections
+from typing import List
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Left & Next Left pointers, Left for the start index swap, and next left for the end index swap
-    left, next_left = 0, 1
 
-    # Loop to traverse every index in numbers
-    while next_left < len(numbers):
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Move all the zeroes in the given list to the end while maintaining the order of other elements.
 
-        # Simple case, current index needed to be swapped with the next index
-        if numbers[left] == 0 and numbers[next_left] != 0:
-            numbers[left], numbers[next_left] = numbers[next_left], numbers[left]
+        Args:
+            nums (List[int]): A list of integers.
 
-            # Update pointers for the next iteration
-            left += 1
-            next_left += 1
+        Returns:
+            None: The function modifies the input list in-place.
 
-        # Both of the indices are zero, therefor we need to update only the second index
-        elif numbers[left] == 0 and numbers[next_left] == 0:
-            next_left += 1
+        Time Complexity: o(n) where n is the length of the given list.
+        Space Complexity: o(n) where n is the length of the given list.
+        """
+        NUMS_LENGTH = len(nums)
+        zerosIndex = collections.deque()
 
-        # Current index doesn't need to be taken care of, then update both of the pointers
-        else:
-            left += 1
-            next_left += 1
+        for index in range(NUMS_LENGTH):
+            if nums[index]:
+                if zerosIndex:
+                    newIndex = zerosIndex.popleft()
+                    nums[index], nums[newIndex] = nums[newIndex], nums[index]
+                    zerosIndex.append(index)
 
-    # Explicit None return, everything happen in place nothing need to be return
-    return
+            else:
+                zerosIndex.append(index)
