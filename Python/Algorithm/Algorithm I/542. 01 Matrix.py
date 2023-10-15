@@ -1,62 +1,69 @@
 import collections
+from typing import List
 
 
-def update_matrix(matrix: list[list[int]]) -> list[list[int]]:
-    """
-    Updating each cell in matrix to be the distance of the nearest 0, and return it
+class Solution:
+    def isValidCell(self, ROWS: int, COLUMNS: int, row: int, column: int) -> bool:
+        """
+        Checks if a given cell is within the bounds of the matrix.
 
-    :param matrix: Binary matrix
-    :return: The updated matrix with each cell storing the distance of the nearest 0
+        Args:
+            ROWS: The number of rows in the matrix.
+            COLUMNS: The number of columns in the matrix.
+            row: The row of the cell to check.
+            column: The column of the cell to check.
 
-    Time Complexity: o(n * m)
-    Space Complexity: o(n * m)
-    """
-    # Constants for the cells indices boundaries and possible indices increased, for more readable code
-    MAX_ROW = len(matrix)
-    MAX_COLUMN = len(matrix[0])
-    DIRECTIONS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        Returns:
+            True if the cell is within the bounds of the matrix, False otherwise.
 
-    # dequeue for bfs algorithm, Initialize with the root of the tree
-    queue = collections.deque()
+        Time Complexity: o(1) since we are only make a 4 comparisons.
+        Space Complexity: o(1) since we are not using any extra space.
+        """
+        isValidRow = 0 <= row < ROWS
+        isValidColumn = 0 <= column < COLUMNS
 
-    # Double loop to traverse the matrix
-    for row in range(len(matrix)):
-        for column in range(len(matrix[0])):
+        return isValidRow and isValidColumn
 
-            # if the cell value is 0, then add it to the queue
-            # Note: We add the 0 value cells to the queue first, cause distance counter start from 0 value cells
-            if matrix[row][column] == 0:
-                queue.append([row, column])
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        """
+        Updates a matrix such that each cell contains the minimum number of moves required to reach a cell
+        containing 0.
 
-            # if the cell value is not 0, then give it special value. symbol for unvisited cell
-            else:
-                matrix[row][column] = -1
+        Args:
+            mat: A list of lists of integers, representing the matrix to update.
 
-    # Loop to traverse the queue as long there's items in
-    while queue:
+        Returns:
+            A list of lists of integers, representing the updated matrix.
 
-        # Unpacking the list indices of the first item in the queue
-        row, column = queue.popleft()
+        Time Complexity: o(m * n) where m is the number of rows and n is the number of columns in the matrix.
+        Space Complexity: o(m * n) where m is the number of rows and n is the number of columns in the matrix.
+        """
+        DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-        # Iterative loop to get the 4 possible cell directions
-        for row_step, column_step in DIRECTIONS:
+        ROWS = len(mat)
+        COLUMNS = len(mat[0])
 
-            # Storing the new row and column indices check
-            new_row = row + row_step
-            new_column = column + column_step
+        queue = collections.deque()
+        for row in range(ROWS):
+            for column in range(COLUMNS):
+                if mat[row][column] == 0:
+                    queue.append([row, column])
 
-            # if the new indices is out of boundaries, continue to the next iteration
-            if not (0 <= new_row < MAX_ROW and 0 <= new_column < MAX_COLUMN):
-                continue
+                else:
+                    mat[row][column] = -1
 
-            # if the new indices were already visited, continue to the next iteration
-            # Note: -1 is a defined symbol for not visited cell
-            if matrix[new_row][new_column] != -1:
-                continue
+        while queue and queue[0]:
+            row, column = queue.popleft()
 
-            # Update matrix "new" cell value to the found one, and add it to the queue
-            matrix[new_row][new_column] = matrix[row][column] + 1
-            queue.append([new_row, new_column])
+            for rowStep, columnStep in DIRECTIONS:
+                newRow = row + rowStep
+                newColumn = column + columnStep
 
-    # Returning the modified matrix
-    return matrix
+                if not self.isValidCell(ROWS, COLUMNS, newRow, newColumn) or mat[newRow][newColumn] != -1:
+                    continue
+
+                mat[newRow][newColumn] = mat[row][column] + 1
+                queue.append([newRow, newColumn])
+
+        return mat
+
