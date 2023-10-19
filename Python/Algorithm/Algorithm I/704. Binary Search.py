@@ -1,34 +1,37 @@
-def search(numbers: list[int], target: int) -> int:
-    """
-    Searching the index of target in numbers, and return it if exist else -1
+from typing import List
 
-    :param numbers: List of integers sorted by ascending order
-    :param target: Integer represent desire value in numbers
-    :return: The index of target in numbers if exist else -1
 
-    Time Complexity: o(log(n))
-    Space Complexity: o(1)
-    """
-    # Pointers to current array we are searching at
-    left, right = 0, len(numbers) - 1
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        """
+        Search for the target value in a sorted list of integers using binary search.
 
-    # Loop to traverse numbers without repeating
-    while left <= right:
+        Args:
+            nums (List[int]): A sorted list of integers.
+            target (int): The target value to search for.
+        
+        Returns:
+            int: The index of the target value if found, otherwise -1.
 
-        # Variable to store the middle index of the current container we are searching at
-        middle = (right + left) // 2
+        Time Complexity: o(log(n)) where n is the length of the list.
+        Space Complexity: o(1) since we only use three integer variables.
+        """
+        NUMS_LENGTH = len(nums)
+        
+        leftPointer = 0
+        rightPointer = NUMS_LENGTH - 1
 
-        # if we found the desire target, return its index
-        if numbers[middle] == target:
-            return middle
+        while leftPointer <= rightPointer:
+            middlePointer = leftPointer + (rightPointer - leftPointer) // 2
+            middleValue = nums[middlePointer]
 
-        # if numbers[middle] is bigger, than we narrow the container to be [left, middle - 1]
-        elif numbers[middle] > target:
-            right = middle - 1
+            if middleValue == target:
+                return middlePointer
 
-        # if numbers[middle] is lower, than we narrow the container to be [middle + 1, right]
-        else:
-            left = middle + 1
+            elif middleValue < target:
+                leftPointer = middlePointer + 1
 
-    # if we reach here, then target isn't exist in numbers, return default value
-    return -1
+            else:
+                rightPointer = middlePointer - 1
+
+        return -1
