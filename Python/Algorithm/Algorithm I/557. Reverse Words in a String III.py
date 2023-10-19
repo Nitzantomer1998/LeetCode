@@ -1,18 +1,45 @@
-def reverse_words(string: str) -> str:
-    """
-    Reversing the order of characters in each word within a sentence, and return it
+class Solution:
+    def reverseWord(self, s: str, startIndex: int, endIndex: int) -> None:
+        """
+        Reverse the characters in the given string from startIndex to endIndex (inclusive).
 
-    :param string: String represent a sentence
-    :return: The sentence which every word is reversed
+        Args:
+            s (str): The input string.
+            startIndex (int): The starting index for the reversal.
+            endIndex (int): The ending index for the reversal.
 
-    Time Complexity: o(n)
-    Space Complexity: o(n)
-    """
-    # Creating list, which every index of her hold a full word from string
-    words = string.split()
+        Returns:
+            None: The function modifies the input string in-place.
 
-    # Reversing every word in words
-    words = [word[::-1] for word in words]
+        Time Complexity: o(n) where n is the number of characters to be reversed.
+        Space Complexity: o(1) since the reversal is performed in-place.
+        """
+        while startIndex < endIndex:
+            s[startIndex], s[endIndex] = s[endIndex], s[startIndex]
+            
+            startIndex += 1
+            endIndex -= 1
 
-    # Returning the reversed string, by adding spacebar between every two words
-    return ' '.join(words)
+    def reverseWords(self, s: str) -> str:
+        """
+        Reverse the order of words in the given string.
+
+        Args:
+            s (str): The input string.
+
+        Returns:
+            str: The string with reversed word order.
+
+        Time Complexity: o(n) where n is the length of the given string.
+        Space Complexity: o(n) where n is the length of the given string.
+        """
+        STRING_LENGTH = len(s)
+        s = list(s)
+        startIndex = 0
+
+        for endIndex in range(STRING_LENGTH + 1):
+            if endIndex == STRING_LENGTH or s[endIndex] == ' ':
+                self.reverseWord(s, startIndex, endIndex - 1)
+                startIndex = endIndex + 1
+
+        return ''.join(s)
