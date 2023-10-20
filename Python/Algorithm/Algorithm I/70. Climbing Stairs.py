@@ -1,23 +1,21 @@
-def climb_stairs(n: int) -> int:
-    """
-    Finding the maximum ways you can climb n stairs, with the possibility of 1 or 2 steps each time, and return it
+class Solution:
+    def climb_stairs(self, n: int) -> int:
+        """
+        Calculate the number of distinct ways to climb to the top of a staircase with 'n' steps.
 
-    :param n: Integer represent the amount of stairs
-    :return: The maximum ways you can climb n stairs, with the possibility of 1 or 2 steps each time
+        Args:
+            n (int): An integer representing the total number of steps in the staircase.
+        
+        Returns:
+            bool: The number of distinct ways to reach the top.
 
-    Time Complexity: o(n)
-    Space Complexity: o(1)
-    """
-    # Variable to hold the amount of possible ways we can climb the stairs
-    current_climb_options = 1
+        Time Complexity: o(n) where n is the number of steps in the staircase.
+        Space Complexity: o(1) since we only use two integers variables.
+        """
+        current_option = 1
+        previous_option = 0
 
-    # Variable to hold the possible next step in the stairs
-    previous_climb_options = 1
+        for _ in range(n):
+            current_option, previous_option = current_option + previous_option, current_option
 
-    # Loop which run n - 1 steps, each iteration we calculate the amount of ways we can climb the index stair
-    for index in range(n - 1):
-        # Updating the new climbing stairs amount, and updating the previous climbing stairs amount
-        current_climb_options, previous_climb_options = current_climb_options + previous_climb_options, current_climb_options
-
-    # Returning the amount of possible ways to climb n stairs
-    return current_climb_options
+        return current_option
