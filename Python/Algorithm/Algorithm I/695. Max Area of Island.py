@@ -1,52 +1,70 @@
-def max_area_of_island(grid: list[list[int]]) -> int:
-    """
-    Finding the maximum island area in grid, and return its area
+import collections
+from typing import List
 
-    :param grid: Matrix of integers, represent island if 1, 0 if water
-    :return: The maximum island area in grid
 
-    Time Complexity: o(n * m)
-    Space Complexity: o(n * m)
-    """
-    # Constants for the cells indices boundaries, for more readable code
-    MAX_ROW = len(grid)
-    MAX_COLUMN = len(grid[0])
-
-    # Variable to store the solution
-    max_island_area = 0
-
-    # Assisting function to make the DFS calls
-    def island_area(row: int, column: int) -> int:
+class Solution:
+    def isValidCell(self, row: int, column: int, ROWS: int, COLUMNS: int) -> bool:
         """
-        Recursive function for finding the current island area using DFS Algorithm
+        Checks if the given cell coordinates are valid within the grid.
 
-        :param row: Integer represent the current cell row
-        :param column: Integer represent the current cell column
-        :return: The current island area
+        Args:
+            row: The row index of the cell.
+            column: The column index of the cell.
+            ROWS: The total number of rows in the grid.
+            COLUMNS: The total number of columns in the grid.
+
+        Returns:
+            True if the cell is valid, False otherwise.
+
+        Time Complexity: o(1) since we do 2 comparisons.
+        Space Complexity: o(n) since we do not use any extra space.
         """
-        # if the sent indices are invalid or the cell is not part of the island, return 0
-        if not (0 <= row < MAX_ROW and 0 <= column < MAX_COLUMN) or grid[row][column] == 0:
-            return 0
+        isValidRow = 0 <= row < ROWS
+        isValidColumn = 0 <= column < COLUMNS
 
-        # we're changing the cell value from 1 to 0, so we won't count him again
-        grid[row][column] = 0
+        return isValidRow and isValidColumn
 
-        # callback to the other 4 directions for a possible island
-        up = island_area(row + 1, column)
-        down = island_area(row - 1, column)
-        right = island_area(row, column + 1)
-        left = island_area(row, column - 1)
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        """
+        Calculates the maximum area of an island in the binary matrix.
 
-        # Return the current island area
-        return 1 + up + down + right + left
+        Args:
+            grid: The binary matrix representing land (1) and water (0).
 
-    # Double loop to traverse every cell in the grid
-    for row in range(len(grid)):
-        for column in range(len(grid[0])):
+        Returns:
+            The maximum area of an island. If there is no island, returns 0.
 
-            # if we found an island, make a callback for mapping the island, and updating the max island area
-            if grid[row][column] == 1:
-                max_island_area = max(max_island_area, island_area(row, column))
+        Time Complexity: o(m * n), where m is the number of rows and n is the number of columns in the grid.
+        Space Complexity: O(m * n), where m is the number of rows and n is the number of columns in the grid.
+        """
+        ROWS = len(grid)
+        COLUMNS = len(grid[0])
+        DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-    # Returning the solution
-    return max_island_area
+        maxArea = 0
+
+        for row in range(ROWS):
+            for column in range(COLUMNS):
+                if grid[row][column]:
+                    grid[row][column] = 0
+
+                    queue = collections.deque()
+                    queue.append((row, column))
+                    currentArea = 1
+
+                    while queue and queue[0]:
+                        row, column = queue.popleft()
+
+                        for rowStep, columnStep in DIRECTIONS:
+                            newRow = row + rowStep
+                            newColumn = column + columnStep
+
+                            if self.isValidCell(newRow, newColumn, ROWS, COLUMNS):
+                                if grid[newRow][newColumn]:
+                                    queue.append((newRow, newColumn))
+                                    grid[newRow][newColumn] = 0
+                                    currentArea += 1
+
+                    maxArea = max(maxArea, currentArea)
+
+        return maxArea
