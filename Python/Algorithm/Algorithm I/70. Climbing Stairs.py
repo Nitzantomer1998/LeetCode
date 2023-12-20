@@ -1,5 +1,5 @@
 class Solution:
-    def climb_stairs(self, n: int) -> int:
+    def climbStairs(self, n: int) -> int:
         """
         Calculate the number of distinct ways to climb to the top of a staircase with 'n' steps.
 
@@ -12,10 +12,10 @@ class Solution:
         Time Complexity: o(n) where n is the number of steps in the staircase.
         Space Complexity: o(1) since we only use two integers variables.
         """
-        current_option = 1
-        previous_option = 0
+        previousOption = 0
+        currentOption = 1
 
         for _ in range(n):
-            current_option, previous_option = current_option + previous_option, current_option
+            currentOption, previousOption = currentOption + previousOption, currentOption
 
-        return current_option
+        return currentOption
