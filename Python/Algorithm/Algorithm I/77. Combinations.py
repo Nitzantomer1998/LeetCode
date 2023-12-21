@@ -1,42 +1,53 @@
-def combine(number: int, k: int) -> list[list[int]]:
-    """
-    Creating all the possible combinations of k numbers chosen from the range [1, n], and return it
+from typing import List
 
-    :param number: Integer representing the highest digit value allowed
-    :param k: Integer representing the permutation needed length
-    :return: All the possible combinations
 
-    Time Complexity: o(nCk)
-    Space Complexity: o(n * k)
-    """
-    # Constants for the max possible digit value, and the permutation length, for more readable code
-    MAX_VALUE = number + 1
-    PERMUTATION_LENGTH = k
-
-    # List to store all the possible permutation
-    permutation_solution = []
-
-    # Assisting function to make the DFS calls
-    def add_nth_permutation(current_digit: int, current_permutation: list[int]) -> None:
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
         """
-        Adding all the possible permutation that start with the current_digit
+        Creating all the possible combinations of length k chosen from the range [1, n], and return it.
 
-        :param current_digit: Integer representing the starting value of a permutation
-        :param current_permutation: List Representing the current built permutation
-        :return: Nothing, everything happens in place
+        Args:
+            n (int): An integer representing the highest digit value allowed.
+            k (int): An integer representing the permutation needed length.
+        
+        Returns:
+            List[List[int]]: All the possible combinations.
+
+        Time Complexity: o(nCk) where n is the highest digit value allowed, and k is the permutation length.
+        Space Complexity: o(n * k) since we are using a list to store all the possible combinations.
         """
-        # if we have built possible permutation, add permutation to solution and end call
-        if len(current_permutation) == PERMUTATION_LENGTH:
-            permutation_solution.append(current_permutation)
+        MAX_VALUE = n + 1
+        PERMUTATION_LENGTH = k
+
+        permutationSolution = []
+
+        for digit in range(1, MAX_VALUE):
+            self.addNthPremutation(digit, [digit], permutationSolution, PERMUTATION_LENGTH, MAX_VALUE)
+
+        return permutationSolution
+
+    def addNthPremutation(self, currentDigit: int, currentPermutation: List[int], permutationSolution: List[List[int]], PERMUTATION_LENGTH: int, MAX_VALUE: int) -> None:
+        """
+        Adding the possible permutation for the current index.
+
+        Args:
+            currentDigit (int): Integer representing the digit we are at.
+            currentPermutation (List[int]): List representing the current built permutation.
+            permutationSolution (List[List[int]]): List to store all the possible permutations.
+            PERMUTATION_LENGTH (int): Integer representing the permutation needed length.
+            MAX_VALUE (int): Integer representing the highest digit value allowed.
+
+        Returns:
+            None: Everything happens in place.
+
+        Time Complexity: o((n - currentDigit) ^ k) where n is the range, k is the length of combinations, and currentDigit ranges from 1 to n.
+        Space Complexity: o(k + n ^ k) where k is the length of combinations, and the recursion stack uses space proportional to the length of the combinations being generated.
+        """
+        CURRENT_PERMUTATION_LENGTH = len(currentPermutation)
+
+        if CURRENT_PERMUTATION_LENGTH == PERMUTATION_LENGTH:
+            permutationSolution.append(currentPermutation[:])
             return
 
-        # if we haven't finished to build a permutation, make callback for each possible next digit
-        for next_digit in range(current_digit + 1, MAX_VALUE):
-            add_nth_permutation(next_digit, current_permutation + [next_digit])
-
-    # Making callback for each digit till max number, which will add the possible permutations starting with the digit
-    for digit in range(1, MAX_VALUE):
-        add_nth_permutation(digit, [digit])
-
-    # Returning the built solution
-    return permutation_solution
+        for nextDigit in range(currentDigit + 1, MAX_VALUE):
+            self.addNthPremutation(nextDigit, currentPermutation + [nextDigit], permutationSolution, PERMUTATION_LENGTH, MAX_VALUE)
