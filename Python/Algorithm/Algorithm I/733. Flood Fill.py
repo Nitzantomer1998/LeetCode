@@ -1,51 +1,72 @@
-def flood_fill(image: list[list[int]], start_row: int, start_column: int, color: int) -> list[list[int]]:
-    """
-    Modify image, with the starting indices and the sent color change every cell in the 4 directions with the same color
+import collections
+from typing import List
 
-    :param image: Matrix of integers, represent a picture
-    :param start_row: Integer of the starting row
-    :param start_column: Integer of the starting column
-    :param color: Integer represent the new modify color
-    :return: The image after it been updated
 
-    Time Complexity: o(n * m)
-    Space Complexity: o(n * m)
-    """
-    # Constants for the cells indices boundaries, for more readable code
-    MAX_ROW = len(image)
-    MAX_COLUMN = len(image[0])
-
-    # Storing the first color before painting
-    old_color = image[start_row][start_column]
-
-    # Assisting function to make the DFS calls
-    def fill(row: int, column: int) -> None:
+class Solution:
+    def isValidCell(self, row: int, column: int, ROWS: int, COLUMNS: int) -> bool:
         """
-        Recursive function for updating / filing the needed image cells using DFS Algorithm
+        Check if the given cell coordinates are within the bounds of the grid.
 
-        :param row: Integer represent the current cell row
-        :param column: Integer represent the current cell column
-        :return: None, Everything happen in place
+        Args
+            row (int): Row index of the cell.
+            column (int): Column index of the cell.
+            ROWS (int): Total number of rows in the grid.
+            COLUMNS (int): Total number of columns in the grid.
+
+        Returns
+            bool: True if the cell is valid, False otherwise.
+
+        Time Complexity: o(1) since we do 2 comparisons.
+        Space Complexity: o(1) since we do not use any extra space.
         """
-        # if the sent indices are invalid, return
-        if not (0 <= row < MAX_ROW and 0 <= column < MAX_COLUMN):
-            return
+        isValidRow = 0 <= row < ROWS
+        isValidColumn = 0 <= column < COLUMNS
 
-        # if the current cell cant be painted or already painted, return
-        if image[row][column] != old_color or image[row][column] == color:
-            return
+        return isValidRow and isValidColumn
 
-        # Update the cell color
-        image[row][column] = color
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        """
+        Perform flood fill on the given image starting from the specified coordinates.
 
-        # callback to the other 4 directions for a possible color
-        fill(row - 1, column)
-        fill(row + 1, column)
-        fill(row, column - 1)
-        fill(row, column + 1)
+        Args
+            image (List[List[int]]): The 2D grid representing the image.
+            sr (int): The starting row index for flood fill.
+            sc (int): The starting column index for flood fill.
+            color (int): The new color to be filled.
 
-    # Activating the fill recursion
-    fill(start_row, start_column)
+        Returns
+            List[List[int]]: The modified image after flood fill.
 
-    # Returning the modified image
-    return image
+        Time Complexity: o(m * n), where m is the number of rows and n is the number of columns in the image.
+        Space Complexity: o(m * n), where m is the number of rows and n is the number of columns in the image.
+        """
+        ROWS = len(image)
+        COLUMNS = len(image[0])
+        DIRECTIONS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+        oldColor = image[sr][sc]
+        newColor = color
+
+        if oldColor == newColor:
+            return image
+
+        queue = collections.deque([[sr, sc]])
+        image[sr][sc] = newColor
+
+        while queue and queue[0]:
+            row, column = queue.popleft()
+            
+            for rowStep, columnStep in DIRECTIONS:
+                newRow = row + rowStep
+                newColumn = column + columnStep
+
+                if not self.isValidCell(newRow, newColumn, ROWS, COLUMNS):
+                    continue
+
+                if image[newRow][newColumn] != oldColor:
+                    continue
+
+                image[newRow][newColumn] = newColor
+                queue.append([newRow, newColumn])
+
+        return image
