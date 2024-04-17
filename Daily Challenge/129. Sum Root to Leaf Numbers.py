@@ -11,4 +11,3 @@ class Solution:
             return newSum
 
         return self.DFS(node.left, newSum) + self.DFS(node.right, newSum)
-        
