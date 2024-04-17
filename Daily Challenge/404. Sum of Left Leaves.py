@@ -10,3 +10,4 @@ class Solution:
             return node.val
 
         return self.DFS(node.left, True) + self.DFS(node.right, False)
+        
